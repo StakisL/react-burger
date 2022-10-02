@@ -1,0 +1,25 @@
+.header-container {
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.header-block{
+    /* внешний отступ */
+    margin: 16px 8px 16px 16px;
+    /* // внутренний отступ */
+    padding: 20px 16px 20px 16px;
+}
+
+.nav-button {
+    border: 5px;
+    border-radius: 2px;
+}
+
+.nav-button__logo {
+
+}
+
+.nav-button__text {
+
+}
