@@ -1,0 +1,58 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    border: 3px;
+    border-bottom: 16px;
+    border-top: 16px;
+    border-color: #4c4cff;
+}
+
+ul.no-dots {
+    list-style-type: none; /* Remove bullets */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+.header-block{
+    /* внешний отступ */
+    margin: 16px 8px 16px 16px;
+    /* // внутренний отступ */
+    padding: 20px 16px 20px 16px;
+}
+
+.nav-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 8px;
+    width: 178px;
+    height: 56px;
+    background: #1C1C21;
+    border: 1px dashed #4C4CFF;
+    border-radius: 40px;
+    flex: none;
+    flex-grow: 0;
+}
+
+.nav-button__text{
+    color: #8585AD;
+}
+
+.nav-button__text:hover{
+    color: #f2f2f3;
+}
+
+.nav-button__text:active,
+.nav-button__text:link,
+.nav-button__text:visited {
+    color: #8585AD;
+}
+

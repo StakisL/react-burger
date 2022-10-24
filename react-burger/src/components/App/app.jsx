@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import AppHeader from '../AppHeader/AppHeader.jsx'
+import './app.css';
+import AppHeader from '../app-header/app-header.jsx'
 import BurgersData from '../../utils/data.js'
 
 function App() {
