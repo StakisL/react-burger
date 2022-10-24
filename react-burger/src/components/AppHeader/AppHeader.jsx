@@ -1,8 +1,10 @@
+import { render } from "@testing-library/react";
 import { BurgerIcon, ListIcon, Logo, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
+import styles from './AppHeader.css'
 
-function AppHeader() {
-
+class AppHeader extends React.Component {
+    render(){
     return (
         <header className="header"> 
             <div className="header-container">
@@ -34,6 +36,7 @@ function AppHeader() {
            </div>
         </header>
     );
+  }
 }
 
 export default AppHeader;
