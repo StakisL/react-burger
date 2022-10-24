@@ -4,34 +4,35 @@ import React from "react";
 import './app-header.css'
 
 class AppHeader extends React.Component {
+
     render(){
     return (
         <header className="header"> 
             <nav className="header-container">
-              <ul className="no-dots">
-                  <li>
-                      <a className="nav-button" href="1">
-                          <BurgerIcon className="nav-button__logo"/>
-                          <p className="nav-button__text">
+              <ul className="nav-list">
+                  <li className="nav-item">
+                      <a className="nav-link" href="1">
+                          <BurgerIcon className="nav-link__logo ml-20" type="secondary" />
+                          <p className="nav-link__text">
                               Конструктор
                           </p>
                       </a>
                   </li>
-                  <li>
-                      <a className="nav-button" href="2">
-                          <ListIcon className="nav-button__logo"/>
-                          <p className="nav-button__text"> 
+                  <li className="nav-item">
+                      <a className="nav-link" href="2">
+                          <ListIcon className="nav-link__logo" type="secondary" />
+                          <p className="nav-link__text"> 
                               Лента заказов
                           </p>
                       </a>
                   </li>
-                  <li>
-                      <Logo className="logo"/>
+                  <li className="nav-item">
+                      <Logo className="header__logo"/>
                   </li>
-                  <li>
-                      <a className="nav-button" href="3">
-                          <ProfileIcon className="nav-button__logo"/>
-                          <p className="nav-button__text">
+                  <li >
+                      <a className="nav-link" href="3">
+                          <ProfileIcon className="nav-link__logo" type="secondary"/>
+                          <p className="nav-link__text">
                               Личный кабинет
                           </p>
                       </a>
