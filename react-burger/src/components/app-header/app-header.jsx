@@ -18,7 +18,7 @@ class AppHeader extends React.Component {
     return (
         <header className="header"> 
             <nav className="header-container">
-              <section className="nav-section ml-10 mr-10">
+              <section className="nav-section">
                 <div className="nav-link-container mt-4 mb-4">
                     <a className="nav-link" href="1">
                         <BurgerIcon className="nav-link__logo ml-20" type="secondary" />
