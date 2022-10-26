@@ -49,10 +49,6 @@
     align-content: center;
 }
 
-.nav-link__text:hover {
-    color: #f2f2f3;
-}
-
 .nav-link__text:active,
 .nav-link__text:link,
 .nav-link__text:visited {
