@@ -1,6 +1,19 @@
 import { CurrencyIcon, Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
+import PropTypes from 'prop-types';
 import './burger-ingredients.css'
+
+const burgerPropTypes = PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type:PropTypes.string.isRequired,
+    price:PropTypes.number.isRequired,
+    image_mobile:PropTypes.string.isRequired,
+    image_large:PropTypes.string.isRequired,
+});
+
+BurgerIngredients.propTypes = {
+    data: PropTypes.arrayOf(burgerPropTypes).isRequired
+}
 
 function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState('one')
