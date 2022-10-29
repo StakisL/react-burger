@@ -8,11 +8,11 @@ import BurgersData from '../../utils/data';
 function App() {
   return (
     <React.Fragment>
-      <AppHeader/>
-      <main>
-        {/* <BurgerIngredients/> */}
+      <AppHeader className="app-header"/>
+      <body className="app-body">
+        <BurgerIngredients data={BurgersData}/>
         <BurgerConstructor data={BurgersData}/>
-      </main>
+      </body>
     </React.Fragment>
   );
 }
