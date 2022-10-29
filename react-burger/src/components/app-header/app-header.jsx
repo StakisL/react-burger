@@ -10,13 +10,13 @@ function AppHeader() {
                 <span className="nav-link-container mt-4 mb-4">
                     <a className="nav-link" href="1">
                         <BurgerIcon className="nav-link__logo ml-20" type="secondary" />
-                        <p className="nav-link__text">
+                        <p className="nav-link__text text_type_main-default">
                             Конструктор
                         </p>
                     </a>
                     <a className="nav-link" href="2">
                         <ListIcon className="nav-link__logo" type="secondary"/>
-                        <p className="nav-link__text"> 
+                        <p className="nav-link__text text_type_main-default"> 
                             Лента заказов
                         </p>
                     </a>
@@ -25,7 +25,7 @@ function AppHeader() {
                 <span className="nav-link-container mt-4 mb-4">
                     <a className="nav-link" href="3">
                         <ProfileIcon className="nav-link__logo" type="secondary"/>
-                        <p className="nav-link__text">
+                        <p className="nav-link__text text_type_main-default">
                             Личный кабинет
                         </p>
                     </a>
