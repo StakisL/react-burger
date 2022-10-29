@@ -1,16 +1,35 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgersData from '../../utils/data';
+import PropTypes from 'prop-types';
 import './burger-constructor.css'
 
-function BurgerConstructor() {
+const burgerPropTypes = PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type:PropTypes.string.isRequired,
+    proteins:PropTypes.number,
+    fat:PropTypes.number,
+    carbohydrates:PropTypes.number,
+    calories:PropTypes.number,
+    price:PropTypes.number.isRequired,
+    image:PropTypes.string.isRequired,
+    image_mobile:PropTypes.string,
+    image_large:PropTypes.string,
+    __v:PropTypes.number
+});
+
+BurgerConstructor.propTypes = {
+    data: PropTypes.arrayOf(burgerPropTypes).isRequired
+}
+
+function BurgerConstructor(props) {
     return (
         <section className="constructor">
             <ul className="constructor-list mt-25 mb-10">
-                {BurgersData.map((burger) => (
-                    <div className="constructor-list-item mt-4 mb-4 mr-1 ml-1">
-                        <div className="constructor-list-item__icon-container mr-1">
-                        {burger.type !== "bun" && <DragIcon className="constructor-list-item__icon" type="primary"/>}
-                        </div>
+                {props.data.map((burger) => (
+                    <section className="constructor-list-item mt-4 mb-4 mr-1 ml-1">
+                        <span className="constructor-list-item__icon-container mr-1">
+                            {burger.type !== "bun" && <DragIcon className="constructor-list-item__icon" type="primary"/>}
+                        </span>
                         <ConstructorElement className="constructor-list-item__description"
                                             text={burger.name}
                                             type={burger.type}
@@ -18,7 +37,7 @@ function BurgerConstructor() {
                                             thumbnail={burger.image}
                                             isLocked={burger.type === "bun" ? true : false}
                                             />
-                    </div>
+                    </section>
                 ))} 
             </ul>
             <section className="order-info">

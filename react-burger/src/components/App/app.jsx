@@ -3,6 +3,7 @@ import './app.css';
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
+import BurgersData from '../../utils/data';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <AppHeader/>
       <main>
         {/* <BurgerIngredients/> */}
-        <BurgerConstructor/>
+        <BurgerConstructor data={BurgersData}/>
       </main>
     </React.Fragment>
   );
