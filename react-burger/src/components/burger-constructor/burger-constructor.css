@@ -13,6 +13,7 @@
 
 .constructor-list {
     overflow-y: scroll;
+    max-height: 464px;
 }
 
 .constructor-list-item {

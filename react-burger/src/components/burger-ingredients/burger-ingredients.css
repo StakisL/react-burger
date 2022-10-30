@@ -7,22 +7,15 @@
 }
 
 ul {
-    padding: 0;
+    padding: 0px;
     list-style-type: none;
+}
+
+.burger-ingredients-tabs {
+    display: flex;
+    flex-direction: row;
 }
 
 .burger-ingredients-list {
     overflow-y: scroll;
-}
-
-::-webkit-scrollbar{
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb  {
-    background: #8585AD
-}
-
-::-webkit-scrollbar-track {
-    background: #2F2F37
 }
