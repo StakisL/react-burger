@@ -34,12 +34,12 @@ function BurgerConstructor(props) {
             </ul>
             <section className="order-info">
                 <section className="order-info-price mr-10 ml-10">
-                    <p className="order-info-price__total text_type_digits-default mr-1">
+                    <p className="order-info-price__total text_type_digits-medium mr-1">
                         635
                     </p>
                     <CurrencyIcon className="order-info-price__icon" type="primary"/>
                 </section>
-                <Button type="primary" size="large">
+                <Button type="primary" size="medium">
                     Оформить заказ
                 </Button>
             </section>

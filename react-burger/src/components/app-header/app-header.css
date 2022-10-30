@@ -1,7 +1,5 @@
 .header {
     height: 88px;
-    left: 2%;
-    right: 2%;
     top: 40px;
     background: #1C1C21;
 }
@@ -17,7 +15,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     margin: 0 auto;
-    max-width: 1260px;
+    max-width: 1240px;
     justify-content: space-between;
     align-items: center;
 }

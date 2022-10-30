@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './burger-ingredients.css'
 
 const burgerPropTypes = PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type:PropTypes.string.isRequired,
     price:PropTypes.number.isRequired,
@@ -53,7 +54,7 @@ function BurgerIngredients(props) {
 
     return(
         <section className="burger-ingredients">
-            <h1 className="burger-ingredients-header">
+            <h1 className="burger-ingredients-header ml-8">
                 Соберите бургер
             </h1>
             <section className="burger-ingredients-tabs">
@@ -61,18 +62,18 @@ function BurgerIngredients(props) {
             </section>
             <ul className="burger-ingredients-lists">
                 <section className="burger-ingredients-dictionary__list">
-                    <h2 className="burger-ingredients-dictionary__list-header">
+                    <h2 className="burger-ingredients-dictionary__list-header ml-8">
                         Булки
                     </h2>
                     <ul className="burger-ingredients-dictionary__list-items-container">
                         {dict.bun.map((bun) => (
                             <section className="burger-ingredients-lists-item">
-                                <img className="burger-ingredients-lists-item__image" src={bun.image_mobile} alt=""/>
+                                <img className="burger-ingredients-lists-item__image" src={bun.image} alt=""/>
                                 <span className="burger-ingredients-lists-item__price">
                                     <p className="burger-ingredients-lists-item__count"> {bun.price}</p>
                                     <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
                                 </span>
-                                <p className="burger-ingredients-lists-item__price">
+                                <p className="burger-ingredients-lists-item__name text_type_main-default">
                                     {bun.name}
                                 </p>
                             </section>
@@ -80,18 +81,18 @@ function BurgerIngredients(props) {
                     </ul>
                 </section>
                 <section className="burger-ingredients-dictionary__list">
-                    <h2 className="burger-ingredients-dictionary__list-header">
+                    <h2 className="burger-ingredients-dictionary__list-header ml-8">
                         Соусы
                     </h2>
                     <ul className="burger-ingredients-dictionary__list-items-container">
                         {dict.sauce.map((sauce) => (
                             <section className="burger-ingredients-lists-item">
-                                <img className="burger-ingredients-lists-item__image" src={sauce.image_mobile} alt=""/>
+                                <img className="burger-ingredients-lists-item__image" src={sauce.image} alt=""/>
                                 <span className="burger-ingredients-lists-item__price">
                                     <p className="burger-ingredients-lists-item__count"> {sauce.price}</p>
                                     <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
                                 </span>
-                                <p className="burger-ingredients-lists-item__price">
+                                <p className="burger-ingredients-lists-item__name text_type_main-default">
                                     {sauce.name}
                                 </p>
                             </section>
@@ -99,18 +100,18 @@ function BurgerIngredients(props) {
                     </ul>
                 </section>
                 <section className="burger-ingredients-dictionary__list">
-                    <h2 className="burger-ingredients-dictionary__list-header">
+                    <h2 className="burger-ingredients-dictionary__list-header ml-8">
                         Начинки
                     </h2>
                     <ul className="burger-ingredients-dictionary__list-items-container">
                         {dict.main.map((main) => (
                             <section className="burger-ingredients-lists-item">
-                                <img className="burger-ingredients-lists-item__image" src={main.image_mobile} alt=""/>
+                                <img className="burger-ingredients-lists-item__image" src={main.image} alt=""/>
                                 <span className="burger-ingredients-lists-item__price">
-                                    <p className="burger-ingredients-lists-item__count"> {main.price}</p>
+                                    <p className="burger-ingredients-lists-item__count text_type_digits-default"> {main.price}</p>
                                     <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
                                 </span>
-                                <p className="burger-ingredients-lists-item__price">
+                                <p className="burger-ingredients-lists-item__name text_type_main-default">
                                     {main.name}
                                 </p>
                             </section>
