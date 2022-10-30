@@ -2,6 +2,7 @@ import { CurrencyIcon, Tab } from "@ya.praktikum/react-developer-burger-ui-compo
 import React from "react";
 import PropTypes from 'prop-types';
 import './burger-ingredients.css'
+import IngredientsList from '../ingredients-list/ingredients-list.jsx'
 
 const burgerPropTypes = PropTypes.shape({
     _id: PropTypes.string.isRequired,
@@ -18,6 +19,7 @@ BurgerIngredients.propTypes = {
 
 function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState('one')
+
     let dict = {
         bun : new Array(),
         sauce: new Array(),
@@ -37,87 +39,26 @@ function BurgerIngredients(props) {
         }
     });
 
-    const Tabs = () => {
-        return (
-        <div style={{ display: 'flex' }}>
-            <Tab value="one" active={current === 'one'} onClick={setCurrent}>
-              One
-            </Tab>
-            <Tab value="two" active={current === 'two'} onClick={setCurrent}>
-              Two
-            </Tab>
-            <Tab value="three" active={current === 'three'} onClick={setCurrent}>
-              Three
-            </Tab>
-        </div> )
-    }
-
     return(
         <section className="burger-ingredients">
             <h1 className="burger-ingredients-header text_type_main-large ml-8">
                 Соберите бургер
             </h1>
             <section className="burger-ingredients-tabs">
-              {Tabs}
+                {/* <Tab value="one" active={current === 'one'} onClick={setCurrent}>
+                  One
+                </Tab>
+                <Tab value="two" active={current === 'two'} onClick={setCurrent}>
+                  Two
+                </Tab>
+                <Tab value="three" active={current === 'three'} onClick={setCurrent}>
+                  Three
+                </Tab> */}
             </section>
             <ul className="burger-ingredients-lists">
-                <section className="burger-ingredients-dictionary__list">
-                    <h2 className="burger-ingredients-dictionary__list-header ml-8">
-                        Булки
-                    </h2>
-                    <ul className="burger-ingredients-dictionary__list-items-container">
-                        {dict.bun.map((bun) => (
-                            <section className="burger-ingredients-lists-item">
-                                <img className="burger-ingredients-lists-item__image" src={bun.image} alt=""/>
-                                <span className="burger-ingredients-lists-item__price">
-                                    <p className="burger-ingredients-lists-item__count text_type_digits-default"> {bun.price}</p>
-                                    <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
-                                </span>
-                                <p className="burger-ingredients-lists-item__name text_type_main-default">
-                                    {bun.name}
-                                </p>
-                            </section>
-                        ))}
-                    </ul>
-                </section>
-                <section className="burger-ingredients-dictionary__list">
-                    <h2 className="burger-ingredients-dictionary__list-header ml-8">
-                        Соусы
-                    </h2>
-                    <ul className="burger-ingredients-dictionary__list-items-container">
-                        {dict.sauce.map((sauce) => (
-                            <section className="burger-ingredients-lists-item">
-                                <img className="burger-ingredients-lists-item__image" src={sauce.image} alt=""/>
-                                <span className="burger-ingredients-lists-item__price">
-                                    <p className="burger-ingredients-lists-item__count text_type_digits-default"> {sauce.price}</p>
-                                    <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
-                                </span>
-                                <p className="burger-ingredients-lists-item__name text_type_main-default">
-                                    {sauce.name}
-                                </p>
-                            </section>
-                        ))}
-                    </ul>
-                </section>
-                <section className="burger-ingredients-dictionary__list">
-                    <h2 className="burger-ingredients-dictionary__list-header ml-8">
-                        Начинки
-                    </h2>
-                    <ul className="burger-ingredients-dictionary__list-items-container">
-                        {dict.main.map((main) => (
-                            <section className="burger-ingredients-lists-item">
-                                <img className="burger-ingredients-lists-item__image" src={main.image} alt=""/>
-                                <span className="burger-ingredients-lists-item__price">
-                                    <p className="burger-ingredients-lists-item__count text_type_digits-default"> {main.price}</p>
-                                    <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
-                                </span>
-                                <p className="burger-ingredients-lists-item__name text_type_main-default">
-                                    {main.name}
-                                </p>
-                            </section>
-                        ))}
-                    </ul>
-                </section>
+                <IngredientsList type="Булки" ingredients={dict.bun}/>
+                <IngredientsList type="Соусы" ingredients={dict.sauce}/>
+                <IngredientsList type="Начинки" ingredients={dict.main}/>
             </ul>
         </section>
     );

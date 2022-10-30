@@ -1,32 +1,3 @@
-.burger-ingredients {
-    max-height: 912px;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-}
-
-ul {
-    padding: 0;
-    list-style-type: none;
-}
-
-.burger-ingredients-lists {
-    overflow-y: scroll;
-}
-
-::-webkit-scrollbar{
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb  {
-    background: #8585AD
-}
-
-::-webkit-scrollbar-track {
-    background: #2F2F37
-}
-
 .burger-ingredients-dictionary__list-items-container {
     display: grid;
     grid-template-columns: 1fr 1fr;

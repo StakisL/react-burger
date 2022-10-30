@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './burger-constructor.css'
 
 const burgerPropTypes = PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type:PropTypes.string.isRequired,
     price:PropTypes.number.isRequired,
@@ -19,7 +20,7 @@ function BurgerConstructor(props) {
         <section className="constructor">
             <ul className="constructor-list mt-25 mb-10">
                 {props.data.map((burger) => (
-                    <section className="constructor-list-item mt-4 mb-4 mr-1 ml-1">
+                    <section className="constructor-list-item mt-4 mb-4 mr-1 ml-1" key={burger._id}>
                         <span className="constructor-list-item__icon-container mr-1">
                             {burger.type !== "bun" && <DragIcon className="constructor-list-item__icon" type="primary"/>}
                         </span>
