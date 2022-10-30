@@ -54,7 +54,7 @@ function BurgerIngredients(props) {
 
     return(
         <section className="burger-ingredients">
-            <h1 className="burger-ingredients-header ml-8">
+            <h1 className="burger-ingredients-header text_type_main-large ml-8">
                 Соберите бургер
             </h1>
             <section className="burger-ingredients-tabs">
@@ -70,7 +70,7 @@ function BurgerIngredients(props) {
                             <section className="burger-ingredients-lists-item">
                                 <img className="burger-ingredients-lists-item__image" src={bun.image} alt=""/>
                                 <span className="burger-ingredients-lists-item__price">
-                                    <p className="burger-ingredients-lists-item__count"> {bun.price}</p>
+                                    <p className="burger-ingredients-lists-item__count text_type_digits-default"> {bun.price}</p>
                                     <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
                                 </span>
                                 <p className="burger-ingredients-lists-item__name text_type_main-default">
@@ -89,7 +89,7 @@ function BurgerIngredients(props) {
                             <section className="burger-ingredients-lists-item">
                                 <img className="burger-ingredients-lists-item__image" src={sauce.image} alt=""/>
                                 <span className="burger-ingredients-lists-item__price">
-                                    <p className="burger-ingredients-lists-item__count"> {sauce.price}</p>
+                                    <p className="burger-ingredients-lists-item__count text_type_digits-default"> {sauce.price}</p>
                                     <CurrencyIcon className="burger-ingredients-lists-item__currency" type="primary"/>
                                 </span>
                                 <p className="burger-ingredients-lists-item__name text_type_main-default">

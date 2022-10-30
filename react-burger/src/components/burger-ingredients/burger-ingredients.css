@@ -6,14 +6,29 @@
     justify-content: left;
 }
 
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
 .burger-ingredients-lists {
-    position: relative;
-    overflow: auto;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-    scrollbar-color: #8585AD #2F2F37;
-    scrollbar-width: thin;
-    padding-left: 0px;
+    overflow-y: scroll;
+    overscroll-behavior:inherit;
+    
+    scrollbar-width: 8px;
+    scroll-margin-left: 4px;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb  {
+    background: #8585AD
+}
+
+::-webkit-scrollbar-track {
+    background: #2F2F37
 }
 
 .burger-ingredients-dictionary__list-items-container {
@@ -24,7 +39,7 @@
 .burger-ingredients-lists-item__price {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:flex-end;
     margin-top: 4px;
     margin-bottom: 4px;
 }
@@ -44,11 +59,19 @@
 
 .burger-ingredients-lists-item__count {
     margin-right: 8px;
+    margin-bottom: 0px;
+}
+
+.burger-ingredients-lists-item__currency {
+    margin-bottom: 0px;
 }
 
 .burger-ingredients-lists-item__name {
     max-height: 48px;
     height: 48px;
+    margin: 0px;
     display: flex;
+    vertical-align: top;
     justify-content: center;
+    text-align: center;
 }
