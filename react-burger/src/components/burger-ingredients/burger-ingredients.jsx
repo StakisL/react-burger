@@ -1,5 +1,5 @@
-import { CurrencyIcon, Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 import './burger-ingredients.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
@@ -20,22 +20,20 @@ BurgerIngredients.propTypes = {
 function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState('one')
 
-    let dict = {
-        bun : new Array(),
-        sauce: new Array(),
-        main: new Array()
-    };
+    const bun = [];
+    const sauce = [];
+    const main = [];
 
     props.data.forEach(element => {
         switch(element.type) {
             case 'bun':
-                dict.bun.push(element);
+                bun.push(element);
                 break;
             case 'sauce':
-                dict.sauce.push(element);
+                sauce.push(element);
                 break;
             default:
-                dict.main.push(element);
+                main.push(element);
         }
     });
 
@@ -56,9 +54,9 @@ function BurgerIngredients(props) {
                 </Tab> */}
             </section>
             <ul className="burger-ingredients-lists">
-                <IngredientsList type="Булки" ingredients={dict.bun}/>
-                <IngredientsList type="Соусы" ingredients={dict.sauce}/>
-                <IngredientsList type="Начинки" ingredients={dict.main}/>
+                <IngredientsList type="Булки" ingredients={bun}/>
+                <IngredientsList type="Соусы" ingredients={sauce}/>
+                <IngredientsList type="Начинки" ingredients={main}/>
             </ul>
         </section>
     );
