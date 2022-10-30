@@ -15,25 +15,45 @@ BurgerConstructor.propTypes = {
 }
 
 function BurgerConstructor(props) {
-    
+    const topBun = props.data.find(x => x.type === 'bun');
+    const bottomBun = props.data.findLast(x => x.type === 'bun')
+    const ingredients = props.data.filter(x => x.type !== 'bun')
+
     return (
-        <section className="constructor">
-            <ul className="constructor-list mt-25 mb-10">
-                {props.data.map((burger) => (
-                    <section className="constructor-list-item mt-4 mb-4 mr-1 ml-1" key={burger._id}>
+        <section className="constructor mt-25 mb-10">
+            <span className="constructor-list-item ml-5">
+                <ConstructorElement className="constructor-list-item__description"
+                                    text={topBun.name}
+                                    type={topBun.type}
+                                    price={topBun.price}
+                                    thumbnail={topBun.image}
+                                    isLocked={true}
+                                    />
+            </span>
+            <ul className="constructor-list">
+                {ingredients.map((ingredient) => (
+                    <section className="constructor-list-item mt-4 mb-4 mr-1 ml-1" key={ingredient._id}>
                         <span className="constructor-list-item__icon-container mr-1">
-                            {burger.type !== "bun" && <DragIcon className="constructor-list-item__icon" type="primary"/>}
+                          <DragIcon className="constructor-list-item__icon" type="primary"/>
                         </span>
                         <ConstructorElement className="constructor-list-item__description"
-                                            text={burger.name}
-                                            type={burger.type}
-                                            price={burger.price}
-                                            thumbnail={burger.image}
-                                            isLocked={burger.type === "bun" ? true : false}
+                                            text={ingredient.name}
+                                            type={ingredient.type}
+                                            price={ingredient.price}
+                                            thumbnail={ingredient.image}
                                             />
                     </section>
                 ))} 
             </ul>
+            <span className="constructor-list-item ml-5 mb-10">
+                <ConstructorElement className="constructor-list-item__description"
+                                    text={bottomBun.name}
+                                    type={bottomBun.type}
+                                    price={bottomBun.price}
+                                    thumbnail={bottomBun.image}
+                                    isLocked={true}
+                                    />
+            </span>
             <section className="order-info">
                 <section className="order-info-price mr-10 ml-10">
                     <p className="order-info-price__total text_type_digits-medium mr-1">

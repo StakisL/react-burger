@@ -1,9 +1,22 @@
-import React from "react";
 import { CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import './ingredients-list.css'
+import PropTypes from 'prop-types';
+
+const ingredientPropTypes = PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type:PropTypes.string.isRequired,
+    price:PropTypes.number.isRequired,
+    image_mobile:PropTypes.string.isRequired,
+    image_large:PropTypes.string.isRequired,
+});
+
+IngredientsList.propTypes = {
+    type: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
+}
 
 function IngredientsList(props) {
-
     return (
         <section className="ingredients-list">
             <h2 className="ingredients-list-header ml-8">

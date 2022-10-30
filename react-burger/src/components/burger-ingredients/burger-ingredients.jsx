@@ -38,10 +38,11 @@ function BurgerIngredients(props) {
     });
 
     return(
-        <section className="burger-ingredients">
-            <h1 className="burger-ingredients-header text_type_main-large ml-8">
+        <section>
+            <h1 className="burger-ingredients-header text_type_main-large ml-8 mt-10 mb-5">
                 Соберите бургер
             </h1>
+        <section className="burger-ingredients">
             <section className="burger-ingredients-tabs">
                 {/* <Tab value="one" active={current === 'one'} onClick={setCurrent}>
                   One
@@ -53,12 +54,14 @@ function BurgerIngredients(props) {
                   Three
                 </Tab> */}
             </section>
-            <ul className="burger-ingredients-lists">
+            <ul className="burger-ingredients-list">
                 <IngredientsList type="Булки" ingredients={bun}/>
                 <IngredientsList type="Соусы" ingredients={sauce}/>
                 <IngredientsList type="Начинки" ingredients={main}/>
             </ul>
         </section>
+        </section>
+       
     );
 }
 

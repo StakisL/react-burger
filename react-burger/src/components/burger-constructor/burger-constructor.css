@@ -7,12 +7,12 @@
     justify-content: right;
 }
 
+.li {
+    list-style-type: none;
+}
+
 .constructor-list {
-    overflow: auto;
-    overscroll-behavior: contain;
-    scrollbar-color: #8585AD #2F2F37;
-    scrollbar-width: thin;
-    scroll-margin-left: 4px;
+    overflow-y: scroll;
 }
 
 .constructor-list-item {
