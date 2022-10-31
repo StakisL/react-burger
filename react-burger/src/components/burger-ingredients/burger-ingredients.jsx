@@ -11,11 +11,11 @@ BurgerIngredients.propTypes = {
 }
 
 function BurgerIngredients(props) {
-    const [current, setCurrent] = React.useState('one')
+    const [current, setCurrent] = React.useState('bun')
 
-    const bun = props.data.filter(x => x.type === 'bun');
-    const sauce = props.data.filter(x => x.type === 'sauce');
-    const main = props.data.filter(x => x.type === 'main');
+    const bun = props.data.filter(element => element.type === 'bun');
+    const sauce = props.data.filter(element => element.type === 'sauce');
+    const main = props.data.filter(element => element.type === 'main');
 
     const currentHandle = (val) => () => setCurrent(val);
 
@@ -26,13 +26,13 @@ function BurgerIngredients(props) {
                 </h1>
             <section className="burger-ingredients">
                 <section className="burger-ingredients-tabs">
-                    <Tab value="bun" active={true} onClick={currentHandle("bun")}>
+                    <Tab value="bun" active={current === 'bun'} onClick={currentHandle("bun")}>
                       Булки
                     </Tab>
-                    <Tab value="sauce" active={false} onClick={currentHandle('sauce')}>
+                    <Tab value="sauce" active={current === 'sauce'} onClick={currentHandle('sauce')}>
                       Соусы
                     </Tab>
-                    <Tab value="main" active={false} onClick={currentHandle('main')}>
+                    <Tab value="main" active={current === 'main'} onClick={currentHandle('main')}>
                       Начинки
                     </Tab>
                 </section>

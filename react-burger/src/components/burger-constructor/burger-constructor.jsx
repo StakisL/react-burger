@@ -1,5 +1,5 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './burger-constructor.css'
 import burgerPropTypes from '../../prop-types.jsx'
@@ -10,20 +10,17 @@ BurgerConstructor.propTypes = {
 }
 
 function BurgerConstructor(props) {
-    const [totalPrice, setSum] = useState(0)
     const topBun = props.data.find(element => element.type === 'bun');
     const bottomBun = props.data.findLast(element => element.type === 'bun')
     const ingredients = props.data.filter(element => element.type !== 'bun')
 
-    useEffect(() => {
+    const findTotalPrice = React.useMemo(() => {
         let sum = 0;
         props.data.forEach(element => {
             sum += element.price;
         });
-
-        setSum(sum);
-
-    },[props.data])
+        return sum;
+    }, [props.data]);
 
     return (
         <section className="constructor mt-25 mb-10">
@@ -63,7 +60,7 @@ function BurgerConstructor(props) {
             <section className="order-info">
                 <section className="order-info-price mr-10 ml-10">
                     <p className="order-info-price__total text_type_digits-medium mr-1">
-                        {totalPrice}
+                        {findTotalPrice}
                     </p>
                     <CurrencyIcon className="order-info-price__icon" type="primary"/>
                 </section>

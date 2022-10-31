@@ -13,3 +13,5 @@ const burgerPropTypes = PropTypes.shape({
     image_large: PropTypes.string.isRequired,
     image_mobile: PropTypes.string.isRequired,
 });
+
+export default burgerPropTypes;
