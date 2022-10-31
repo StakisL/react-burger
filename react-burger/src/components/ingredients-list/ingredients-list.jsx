@@ -1,19 +1,12 @@
 import { CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import './ingredients-list.css'
 import PropTypes from 'prop-types';
-
-const ingredientPropTypes = PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type:PropTypes.string.isRequired,
-    price:PropTypes.number.isRequired,
-    image_mobile:PropTypes.string.isRequired,
-    image_large:PropTypes.string.isRequired,
-});
+import burgerPropTypes from '../../prop-types.jsx'
 
 IngredientsList.propTypes = {
     type: PropTypes.string.isRequired,
-    ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
+    ingredients: PropTypes.array.isRequired,
+    ingredients: PropTypes.arrayOf(burgerPropTypes).isRequired
 }
 
 function IngredientsList(props) {

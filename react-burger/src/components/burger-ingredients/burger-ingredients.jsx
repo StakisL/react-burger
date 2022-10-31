@@ -3,17 +3,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './burger-ingredients.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
-
-const burgerPropTypes = PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type:PropTypes.string.isRequired,
-    price:PropTypes.number.isRequired,
-    image_mobile:PropTypes.string.isRequired,
-    image_large:PropTypes.string.isRequired,
-});
+import burgerPropTypes from '../../prop-types.jsx'
 
 BurgerIngredients.propTypes = {
+    data: PropTypes.array.isRequired,
     data: PropTypes.arrayOf(burgerPropTypes).isRequired
 }
 

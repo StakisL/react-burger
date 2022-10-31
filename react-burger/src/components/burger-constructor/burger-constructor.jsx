@@ -1,25 +1,19 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import './burger-constructor.css'
-
-const burgerPropTypes = PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type:PropTypes.string.isRequired,
-    price:PropTypes.number.isRequired,
-    image:PropTypes.string.isRequired,
-});
+import burgerPropTypes from '../../prop-types.jsx'
 
 BurgerConstructor.propTypes = {
+    data: PropTypes.array.isRequired,
     data: PropTypes.arrayOf(burgerPropTypes).isRequired
 }
 
 function BurgerConstructor(props) {
     const [totalPrice, setSum] = useState(0)
-    const topBun = props.data.find(x => x.type === 'bun');
-    const bottomBun = props.data.findLast(x => x.type === 'bun')
-    const ingredients = props.data.filter(x => x.type !== 'bun')
+    const topBun = props.data.find(element => element.type === 'bun');
+    const bottomBun = props.data.findLast(element => element.type === 'bun')
+    const ingredients = props.data.filter(element => element.type !== 'bun')
 
     useEffect(() => {
         let sum = 0;

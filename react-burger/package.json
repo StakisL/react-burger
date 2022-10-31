@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "npx prettier --write ."
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +41,10 @@
       "last 1 safari version"
     ]
   },
+  "devDependencies": {
+		"eslint-config-prettier": "^8.5.0",
+		"prettier": "2.6.2"
+	},
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "keywords": [],
