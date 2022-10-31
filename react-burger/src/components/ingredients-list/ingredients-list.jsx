@@ -3,6 +3,7 @@ import './ingredients-list.css'
 import PropTypes from 'prop-types';
 import burgerPropTypes from '../../prop-types.jsx'
 
+/*eslint no-dupe-keys: "off"*/
 IngredientsList.propTypes = {
     type: PropTypes.string.isRequired,
     ingredients: PropTypes.array.isRequired,

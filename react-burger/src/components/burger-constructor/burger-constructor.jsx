@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './burger-constructor.css'
 import burgerPropTypes from '../../prop-types.jsx'
 
+/*eslint no-dupe-keys: "off"*/
 BurgerConstructor.propTypes = {
     data: PropTypes.array.isRequired,
     data: PropTypes.arrayOf(burgerPropTypes).isRequired

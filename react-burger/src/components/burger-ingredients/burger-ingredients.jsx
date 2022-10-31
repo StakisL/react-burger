@@ -5,6 +5,7 @@ import './burger-ingredients.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
 import burgerPropTypes from '../../prop-types.jsx'
 
+/*eslint no-dupe-keys: "off"*/
 BurgerIngredients.propTypes = {
     data: PropTypes.array.isRequired,
     data: PropTypes.arrayOf(burgerPropTypes).isRequired
