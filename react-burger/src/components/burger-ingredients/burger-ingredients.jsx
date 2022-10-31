@@ -26,7 +26,7 @@ function BurgerIngredients(props) {
                 </h1>
             <section className="burger-ingredients">
                 <section className="burger-ingredients-tabs">
-                    <Tab value="bun" active={current === 'bun'} onClick={currentHandle("bun")}>
+                    <Tab value="bun" active={current === 'bun'} onClick={currentHandle('bun')}>
                       Булки
                     </Tab>
                     <Tab value="sauce" active={current === 'sauce'} onClick={currentHandle('sauce')}>
