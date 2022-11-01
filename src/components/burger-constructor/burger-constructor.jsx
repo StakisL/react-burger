@@ -25,7 +25,7 @@ function BurgerConstructor(props) {
 			<span className="constructor-list-item ml-5">
 				<ConstructorElement
 					className="constructor-list-item__description"
-					text={bun.name}
+					text={bun.name + ' (верх)'}
 					type={bun.type}
 					price={bun.price}
 					thumbnail={bun.image}
@@ -51,7 +51,7 @@ function BurgerConstructor(props) {
 			<span className="constructor-list-item ml-5 mb-10">
 				<ConstructorElement
 					className="constructor-list-item__description"
-					text={bun.name}
+					text={bun.name + ' (низ)'}
 					type={bun.type}
 					price={bun.price}
 					thumbnail={bun.image}

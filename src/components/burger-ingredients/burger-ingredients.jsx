@@ -18,6 +18,7 @@ function BurgerIngredients(props) {
 
 	const currentHandle = (val) => {
 		setCurrent(val)
+		//Сделать скролл через ref
 	}
 
 	return (
