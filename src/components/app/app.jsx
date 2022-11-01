@@ -9,10 +9,10 @@ function App() {
 	return (
 		<React.Fragment>
 			<AppHeader className="app-header" />
-			<body className="app-body">
+			<div className="app-body">
 				<BurgerIngredients data={BurgersData} />
 				<BurgerConstructor data={BurgersData} />
-			</body>
+			</div>
 		</React.Fragment>
 	)
 }
