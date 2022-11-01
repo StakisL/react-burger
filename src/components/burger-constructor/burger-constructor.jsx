@@ -2,7 +2,7 @@ import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktiku
 import React from 'react'
 import PropTypes from 'prop-types'
 import './burger-constructor.css'
-import burgerPropTypes from '../../prop-types.jsx'
+import burgerPropTypes from '../../utils/prop-types.jsx'
 
 BurgerConstructor.propTypes = {
 	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,

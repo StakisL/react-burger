@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './burger-ingredients.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
-import burgerPropTypes from '../../prop-types.jsx'
+import burgerPropTypes from '../../utils/prop-types.jsx'
 
 BurgerIngredients.propTypes = {
 	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,

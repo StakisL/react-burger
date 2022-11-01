@@ -1,7 +1,7 @@
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import './ingredients-list.css'
 import PropTypes from 'prop-types'
-import burgerPropTypes from '../../prop-types.jsx'
+import burgerPropTypes from '../../utils/prop-types.jsx'
 
 IngredientsList.propTypes = {
 	type: PropTypes.string.isRequired,
