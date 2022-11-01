@@ -12,13 +12,10 @@ function BurgerConstructor(props) {
 	const bun = props.data.find((element) => element.type === 'bun')
 	const ingredients = props.data.filter((element) => element.type !== 'bun')
 
-	const findTotalPrice = React.useMemo(() => {
-		let sum = 0
-		props.data.forEach((element) => {
-			sum += element.price
-		})
-		return sum
-	}, [props.data])
+	const findTotalPrice = React.useMemo(
+		() => props.data.reduce((total, currentValue) => total + currentValue.price, 0),
+		[props.data],
+	)
 
 	return (
 		<section className="constructor mt-25 mb-10">
@@ -63,7 +60,7 @@ function BurgerConstructor(props) {
 					<p className="order-info-price__total text_type_digits-medium mr-1">{findTotalPrice}</p>
 					<CurrencyIcon className="order-info-price__icon" type="primary" />
 				</section>
-				<Button type="primary" size="medium">
+				<Button htmlType="button" type="primary" size="medium">
 					Оформить заказ
 				</Button>
 			</section>
