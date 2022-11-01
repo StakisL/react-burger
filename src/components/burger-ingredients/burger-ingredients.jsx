@@ -16,20 +16,22 @@ function BurgerIngredients(props) {
 	const sauce = props.data.filter((element) => element.type === 'sauce')
 	const main = props.data.filter((element) => element.type === 'main')
 
-	const currentHandle = (val) => () => setCurrent(val)
+	const currentHandle = (val) => {
+		setCurrent(val)
+	}
 
 	return (
 		<section className="burger-ingredients-container">
 			<h1 className="burger-ingredients-header text_type_main-large ml-8 mt-10 mb-5">Соберите бургер</h1>
 			<section className="burger-ingredients">
 				<section className="burger-ingredients-tabs">
-					<Tab value="bun" active={current === 'bun'} onClick={currentHandle('bun')}>
+					<Tab value="bun" active={current === 'bun'} onClick={currentHandle}>
 						Булки
 					</Tab>
-					<Tab value="sauce" active={current === 'sauce'} onClick={currentHandle('sauce')}>
+					<Tab value="sauce" active={current === 'sauce'} onClick={currentHandle}>
 						Соусы
 					</Tab>
-					<Tab value="main" active={current === 'main'} onClick={currentHandle('main')}>
+					<Tab value="main" active={current === 'main'} onClick={currentHandle}>
 						Начинки
 					</Tab>
 				</section>
