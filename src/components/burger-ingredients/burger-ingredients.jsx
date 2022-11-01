@@ -11,14 +11,33 @@ BurgerIngredients.propTypes = {
 
 function BurgerIngredients(props) {
 	const [current, setCurrent] = React.useState('bun')
+	const bunRef = React.useRef(null)
+	const sauceRef = React.useRef(null)
+	const mainRef = React.useRef(null)
 
 	const bun = props.data.filter((element) => element.type === 'bun')
 	const sauce = props.data.filter((element) => element.type === 'sauce')
 	const main = props.data.filter((element) => element.type === 'main')
 
 	const currentHandle = (val) => {
+		moveToView(val)
 		setCurrent(val)
-		//Сделать скролл через ref
+	}
+
+	const moveToView = (val) => {
+		switch (val) {
+			case 'bun':
+				bunRef.current?.scrollIntoView({ behavior: 'smooth' })
+				break
+			case 'sauce':
+				sauceRef.current?.scrollIntoView({ behavior: 'smooth' })
+				break
+			case 'main':
+				mainRef.current?.scrollIntoView({ behavior: 'smooth' })
+				break
+			default:
+				break
+		}
 	}
 
 	return (
@@ -37,9 +56,15 @@ function BurgerIngredients(props) {
 					</Tab>
 				</section>
 				<ul className="burger-ingredients-list">
-					<IngredientsList type="Булки" ingredients={bun} />
-					<IngredientsList type="Соусы" ingredients={sauce} />
-					<IngredientsList type="Начинки" ingredients={main} />
+					<div className="ref-container" ref={bunRef}>
+						<IngredientsList type="Булки" ingredients={bun} />
+					</div>
+					<div className="ref-container" ref={sauceRef}>
+						<IngredientsList type="Соусы" ingredients={sauce} />
+					</div>
+					<div className="ref-container" ref={mainRef}>
+						<IngredientsList type="Начинки" ingredients={main} />
+					</div>
 				</ul>
 			</section>
 		</section>

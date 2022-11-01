@@ -10,7 +10,7 @@ IngredientsList.propTypes = {
 
 function IngredientsList(props) {
 	return (
-		<section className="ingredients-list">
+		<section className="ingredients-list" ref={props.ref}>
 			<h2 className="ingredients-list-header ml-8">{props.type}</h2>
 			<ul className="ingredients-list-items-container">
 				{props.ingredients.map((ingredient) => (
