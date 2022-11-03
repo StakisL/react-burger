@@ -1,20 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import BurgersData from '../../utils/data'
+
+const urlApi = 'https://norma.nomoreparties.space/api/ingredients'
 
 function App() {
-	return (
-		<React.Fragment>
-			<AppHeader className={styles.app_header} />
-			<div className={styles.app_body}>
-				<BurgerIngredients data={BurgersData} />
-				<BurgerConstructor data={BurgersData} />
-			</div>
-		</React.Fragment>
-	)
+	const [burgersData, setBugersData] = useState()
+	const [isLoaded, setLoaded] = useState(false)
+	const [error, setError] = useState(false)
+
+	useEffect(() => {
+		const headers = { 'Content-Type': 'application/json' }
+		fetch(urlApi, { headers })
+			.then((response) => response.json())
+			.then((ingredients) => {
+				setBugersData(ingredients.data)
+			})
+			.catch((error) => {
+				setError(error.toString())
+				console.error('Api request was failed', error)
+			})
+			.finally(() => setLoaded(true))
+	}, [])
+
+	if (error) {
+		return (
+			<section>
+				<h1>Что-то пошло не так :(</h1>
+				<p>В приложении произошла ошибка. Пожалуйста, перезагрузите страницу.</p>
+			</section>
+		)
+	} else {
+		return (
+			<React.Fragment>
+				<AppHeader className={styles.app_header} />
+				{isLoaded && (
+					<div className={styles.app_body}>
+						<BurgerIngredients data={burgersData} />
+						<BurgerConstructor data={burgersData} />
+					</div>
+				)}
+			</React.Fragment>
+		)
+	}
 }
 
 export default App
