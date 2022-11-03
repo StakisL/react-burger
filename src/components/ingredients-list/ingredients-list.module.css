@@ -1,9 +1,9 @@
-.ingredients-list-items-container {
+.ingredients_list_items_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.ingredients-list-item__price {
+.ingredients_list_item__price {
     display: flex;
     justify-content: center;
     align-items:flex-end;
@@ -11,29 +11,29 @@
     margin-bottom: 4px;
 }
 
-.ingredients-list-item {
+.ingredients_list_item {
     margin-top: 24px;
     margin-bottom: 40px;
     margin-right: 12px;
     margin-left: 16px;
 }
 
-.ingredients-list-item__image {
+.ingredients_list_item__image {
     margin-bottom: 4px;
     margin-right: 16px;
     margin-left: 16px;
 }
 
-.ingredients-list-item__count {
+.ingredients_list_item__count {
     margin-right: 8px;
     margin-bottom: 0px;
 }
 
-.ingredients-list-item__currency {
+.ingredients_list_item__currency {
     margin-bottom: 0px;
 }
 
-.ingredients-list-item__name {
+.ingredients_list_item__name {
     max-height: 48px;
     height: 48px;
     margin: 0px;
