@@ -1,4 +1,4 @@
-.burger-ingredients {
+.burger_ingredients {
     max-height: 912px;
     max-width: 600px;
     display: flex;
@@ -11,11 +11,11 @@ ul {
     list-style-type: none;
 }
 
-.burger-ingredients-tabs {
+.burger_ingredients_tabs {
     display: flex;
     flex-direction: row;
 }
 
-.burger-ingredients-list {
+.burger_ingredients_list {
     overflow-y: scroll;
 }

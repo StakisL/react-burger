@@ -1,7 +1,7 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import PropTypes from 'prop-types'
-import './burger-ingredients.css'
+import styles from './burger-ingredients.module.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
 import burgerPropTypes from '../../utils/prop-types.jsx'
 
@@ -41,10 +41,12 @@ function BurgerIngredients(props) {
 	}
 
 	return (
-		<section className="burger-ingredients-container">
-			<h1 className="burger-ingredients-header text_type_main-large ml-8 mt-10 mb-5">Соберите бургер</h1>
-			<section className="burger-ingredients">
-				<section className="burger-ingredients-tabs">
+		<section className={styles.burger_ingredients_container}>
+			<h1 className={` ${styles.burger_ingredients_header} text_type_main-large ml-8 mt-10 mb-5`}>
+				Соберите бургер
+			</h1>
+			<section className={styles.burger_ingredients}>
+				<section className={styles.burger_ingredients_tabs}>
 					<Tab value="bun" active={current === 'bun'} onClick={currentHandle}>
 						Булки
 					</Tab>
@@ -55,14 +57,14 @@ function BurgerIngredients(props) {
 						Начинки
 					</Tab>
 				</section>
-				<ul className="burger-ingredients-list">
-					<div className="ref-container" ref={bunRef}>
+				<ul className={styles.burger_ingredients_list}>
+					<div className={styles.ref_container} ref={bunRef}>
 						<IngredientsList type="Булки" ingredients={bun} />
 					</div>
-					<div className="ref-container" ref={sauceRef}>
+					<div className={styles.ref_container} ref={sauceRef}>
 						<IngredientsList type="Соусы" ingredients={sauce} />
 					</div>
-					<div className="ref-container" ref={mainRef}>
+					<div className={styles.ref_container} ref={mainRef}>
 						<IngredientsList type="Начинки" ingredients={main} />
 					</div>
 				</ul>
