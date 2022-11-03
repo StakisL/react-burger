@@ -7,16 +7,13 @@
     justify-content: right;
 }
 
-.li {
+.constructor_list {
     list-style-type: none;
-}
-
-.constructor-list {
     overflow-y: scroll;
     max-height: 464px;
 }
 
-.constructor-list-item {
+.constructor_list_item {
     max-height: 80px;
     display: flex;
     align-content: center;
@@ -24,14 +21,14 @@
     flex-direction: row;
 }
 
-.constructor-list-item__icon-container {
+.constructor_list_item__icon_container {
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 24px;
 }
 
-.constructor-list-item__description {
+.constructor_list_item__description {
     width: 524px;
     max-height: 80px;
     display: flex;
@@ -39,14 +36,14 @@
     justify-content: center;
 }
 
-.order-info {
+.order_info {
     display: flex;
     flex-direction: row;
     justify-content: right;
     max-height: 64px;
 }
 
-.order-info-price {
+.order_info_price {
     display: flex;
     flex-direction: row;
     align-items: center;

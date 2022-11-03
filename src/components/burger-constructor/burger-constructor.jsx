@@ -1,7 +1,7 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import PropTypes from 'prop-types'
-import './burger-constructor.css'
+import styles from './burger-constructor.module.css'
 import burgerPropTypes from '../../utils/prop-types.jsx'
 
 BurgerConstructor.propTypes = {
@@ -18,10 +18,10 @@ function BurgerConstructor(props) {
 	)
 
 	return (
-		<section className="constructor mt-25 mb-10">
-			<span className="constructor-list-item ml-5">
+		<section className={`${styles.constructor} mt-25 mb-10`}>
+			<span className={`${styles.constructor_list_item} ml-5`}>
 				<ConstructorElement
-					className="constructor-list-item__description"
+					className={styles.constructor_list_item__description}
 					text={bun.name + ' (верх)'}
 					type={bun.type}
 					price={bun.price}
@@ -29,14 +29,14 @@ function BurgerConstructor(props) {
 					isLocked={true}
 				/>
 			</span>
-			<ul className="constructor-list">
+			<ul className={styles.constructor_list}>
 				{ingredients.map((ingredient) => (
-					<section className="constructor-list-item mt-4 mb-4 mr-1 ml-1" key={ingredient._id}>
-						<span className="constructor-list-item__icon-container mr-1">
-							<DragIcon className="constructor-list-item__icon" type="primary" />
+					<section className={`${styles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`} key={ingredient._id}>
+						<span className={`${styles.constructor_list_item__icon_container} mr-1`}>
+							<DragIcon className={styles.constructor_list_item__icon} type="primary" />
 						</span>
 						<ConstructorElement
-							className="constructor-list-item__description"
+							className={styles.constructor_list_item__description}
 							text={ingredient.name}
 							type={ingredient.type}
 							price={ingredient.price}
@@ -45,9 +45,9 @@ function BurgerConstructor(props) {
 					</section>
 				))}
 			</ul>
-			<span className="constructor-list-item ml-5 mb-10">
+			<span className={`${styles.constructor_list_item} mb-10 ml-5`}>
 				<ConstructorElement
-					className="constructor-list-item__description"
+					className={styles.constructor_list_item__description}
 					text={bun.name + ' (низ)'}
 					type={bun.type}
 					price={bun.price}
@@ -55,10 +55,10 @@ function BurgerConstructor(props) {
 					isLocked={true}
 				/>
 			</span>
-			<section className="order-info">
-				<section className="order-info-price mr-10 ml-10">
-					<p className="order-info-price__total text_type_digits-medium mr-1">{findTotalPrice}</p>
-					<CurrencyIcon className="order-info-price__icon" type="primary" />
+			<section className={styles.order_info}>
+				<section className={`${styles.order_info_price} mr-10 ml-10`}>
+					<p className={`${styles.order_info_price__total} text_type_digits-medium mr-1`}>{findTotalPrice}</p>
+					<CurrencyIcon className={styles.order_info_price__icon} type="primary" />
 				</section>
 				<Button htmlType="button" type="primary" size="medium">
 					Оформить заказ
