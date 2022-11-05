@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom'
+import { useEffect } from 'react'
 import modalStyles from './modal.module.css'
 import PropTypes from 'prop-types'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -15,17 +16,31 @@ Modal.propTypes = {
 }
 
 function Modal(props) {
+	useEffect(() => {
+		const close = (e) => {
+			if (e.keyCode === 27) {
+				props.handleClose()
+			}
+		}
+		window.addEventListener('keydown', close)
+		return () => window.removeEventListener('keydown', close)
+	}, [props])
+
 	return props.isOpen
 		? ReactDOM.createPortal(
-				<ModalOverlay>
-					<div className={modalStyles.modal}>
+				<ModalOverlay handleClose={props.handleClose}>
+					<div
+						className={modalStyles.modal}
+						onClick={(e) => {
+							e.stopPropagation()
+						}}
+					>
 						<section className={`${modalStyles.modal_header} ml-10 mr-10 mt-10`}>
-							<CloseIcon className={modalStyles.modal_header__close_icon} type="primary">
-								<button
-									className={modalStyles.modal_header__close_button}
-									onClick={props.handleClose}
-								/>
-							</CloseIcon>
+							<CloseIcon
+								className={modalStyles.modal_header__close_icon}
+								type="primary"
+								onClick={props.handleClose}
+							/>
 							{props.type === 'ingredient' && (
 								<p className={`${modalStyles.modal_header__name} text_type_main-large`}>
 									Детали ингредиента
