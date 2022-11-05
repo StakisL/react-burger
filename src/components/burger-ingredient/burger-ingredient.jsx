@@ -17,7 +17,7 @@ function BurgerIngredient(props) {
 
 	return (
 		<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={() => setOpen(true)}>
-			<Modal type="ingredient" isOpen={isOpen} handleClose={handleClose} />
+			<Modal type="ingredient" ingredient={props.ingredient} isOpen={isOpen} handleClose={handleClose} />
 			<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
 			<span className={ingredientStyles.ingredient_price}>
 				<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>

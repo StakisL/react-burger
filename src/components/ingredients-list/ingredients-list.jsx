@@ -14,7 +14,7 @@ function IngredientsList(props) {
 			<h2 className={`${styles.ingredients_list_header} ml-8`}>{props.type}</h2>
 			<ul className={styles.ingredients_list_items_container}>
 				{props.ingredients.map((ingredient) => (
-					<BurgerIngredient ingredient={ingredient} />
+					<BurgerIngredient key={ingredient._id} ingredient={ingredient} />
 				))}
 			</ul>
 		</section>
