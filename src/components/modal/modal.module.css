@@ -1,7 +1,7 @@
 .modal {
     background-color: black;
     width: 720px;
-    height: 539px;
+    height: 600px;
     border-radius: 5%;
 }
 
@@ -10,4 +10,5 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    direction: rtl;
 }

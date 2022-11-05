@@ -1,14 +1,16 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styles from './burger-constructor.module.css'
 import burgerPropTypes from '../../utils/prop-types.jsx'
+import Modal from '../modal/modal'
 
 BurgerConstructor.propTypes = {
 	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
 }
 
 function BurgerConstructor(props) {
+	const [isOpen, setOpen] = useState(false)
 	const bun = props.data.find((element) => element.type === 'bun')
 	const ingredients = props.data.filter((element) => element.type !== 'bun')
 
@@ -16,6 +18,10 @@ function BurgerConstructor(props) {
 		() => props.data.reduce((total, currentValue) => total + currentValue.price, 0),
 		[props.data],
 	)
+
+	const handleClose = () => {
+		setOpen(false)
+	}
 
 	return (
 		<section className={`${styles.constructor} mt-25 mb-10`}>
@@ -60,9 +66,10 @@ function BurgerConstructor(props) {
 					<p className={`${styles.order_info_price__total} text_type_digits-medium mr-1`}>{findTotalPrice}</p>
 					<CurrencyIcon className={styles.order_info_price__icon} type="primary" />
 				</section>
-				<Button htmlType="button" type="primary" size="medium">
+				<Button htmlType="button" type="primary" size="medium" onClick={() => setOpen(true)}>
 					Оформить заказ
 				</Button>
+				<Modal type="order-details" isOpen={isOpen} handleClose={handleClose} />
 			</section>
 		</section>
 	)
