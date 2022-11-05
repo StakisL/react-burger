@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styles from './app.module.css'
+import appStyles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
@@ -35,9 +35,9 @@ function App() {
 	} else {
 		return (
 			<React.Fragment>
-				<AppHeader className={styles.app_header} />
+				<AppHeader className={appStyles.app_header} />
 				{isLoaded && (
-					<div className={styles.app_body}>
+					<div className={appStyles.app_body}>
 						<BurgerIngredients data={burgersData} />
 						<BurgerConstructor data={burgersData} />
 					</div>
