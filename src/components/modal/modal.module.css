@@ -1,0 +1,11 @@
+.modal {
+    background-color: black;
+    width: 720px;
+    height: 720px;
+}
+
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
