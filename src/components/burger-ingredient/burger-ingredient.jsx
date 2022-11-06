@@ -13,6 +13,7 @@ function BurgerIngredient(props) {
 	const handleClose = () => {
 		setOpen(false)
 	}
+
 	return (
 		<>
 			<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={() => setOpen(true)}>

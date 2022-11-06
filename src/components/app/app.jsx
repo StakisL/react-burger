@@ -3,8 +3,7 @@ import appStyles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-
-const urlApi = 'https://norma.nomoreparties.space/api/ingredients'
+import { BURGER_API_URL } from '../../utils/constants'
 
 function App() {
 	const [burgersData, setBugersData] = useState()
@@ -13,7 +12,7 @@ function App() {
 
 	useEffect(() => {
 		const headers = { 'Content-Type': 'application/json' }
-		fetch(urlApi, { headers })
+		fetch(`${BURGER_API_URL}/ingredients`, { headers })
 			.then((response) => response.json())
 			.then((ingredients) => {
 				setBugersData(ingredients.data)
