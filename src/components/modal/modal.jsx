@@ -4,6 +4,7 @@ import modalStyles from './modal.module.css'
 import PropTypes from 'prop-types'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import ModalOverlay from '../modal-overlay/modal-overlay'
+import { ESC_KEYCODE } from '../../utils/constants'
 
 Modal.propTypes = {
 	isOpen: PropTypes.bool.isRequired,
@@ -14,7 +15,7 @@ Modal.propTypes = {
 function Modal(props) {
 	useEffect(() => {
 		const close = (e) => {
-			if (e.keyCode === 27) {
+			if (e.keyCode === ESC_KEYCODE) {
 				props.handleClose()
 			}
 		}
