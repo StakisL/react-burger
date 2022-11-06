@@ -23,29 +23,34 @@ function Modal(props) {
 		return () => window.removeEventListener('keydown', close)
 	}, [props])
 
-	return props.isOpen
-		? ReactDOM.createPortal(
-				<ModalOverlay handleClose={props.handleClose}>
-					<div
-						className={modalStyles.modal}
-						onClick={(e) => {
-							e.stopPropagation()
-						}}
-					>
-						<section className={`${modalStyles.modal_header} ml-10 mr-10 mt-10`}>
-							<CloseIcon
-								className={modalStyles.modal_header__close_icon}
-								type="primary"
-								onClick={props.handleClose}
-							/>
-							<p className={`${modalStyles.modal_header__name} text_type_main-large`}>{props.header}</p>
-						</section>
-						<section className={modalStyles.content_section}>{props.children}</section>
-					</div>
-				</ModalOverlay>,
-				document.body,
-		  )
-		: null
+	return (
+		<>
+			{props.isOpen &&
+				ReactDOM.createPortal(
+					<ModalOverlay handleClose={props.handleClose}>
+						<div
+							className={modalStyles.modal}
+							onClick={(e) => {
+								e.stopPropagation()
+							}}
+						>
+							<section className={`${modalStyles.modal_header} ml-10 mr-10 mt-10`}>
+								<CloseIcon
+									className={modalStyles.modal_header__close_icon}
+									type="primary"
+									onClick={props.handleClose}
+								/>
+								<p className={`${modalStyles.modal_header__name} text_type_main-large`}>
+									{props.header}
+								</p>
+							</section>
+							<section className={modalStyles.content_section}>{props.children}</section>
+						</div>
+					</ModalOverlay>,
+					document.body,
+				)}
+		</>
+	)
 }
 
 export default Modal
