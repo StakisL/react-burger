@@ -15,9 +15,13 @@ function BurgerIngredient(props) {
 		setOpen(false)
 	}
 
+	const handleOpen = () => {
+		setOpen(true)
+	}
+
 	return (
 		<>
-			<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={() => setOpen(true)}>
+			<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
 				<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
 				<span className={ingredientStyles.ingredient_price}>
 					<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>

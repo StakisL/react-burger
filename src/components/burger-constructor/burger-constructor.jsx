@@ -24,6 +24,10 @@ function BurgerConstructor(props) {
 		setOpen(false)
 	}
 
+	const handleOpen = () => {
+		setOpen(true)
+	}
+
 	return (
 		<section className={`${burgerConstructorStyles.constructor} mt-25 mb-10`}>
 			<span className={`${burgerConstructorStyles.constructor_list_item} ml-5`}>
@@ -72,7 +76,7 @@ function BurgerConstructor(props) {
 					</p>
 					<CurrencyIcon className={burgerConstructorStyles.order_info_price__icon} type="primary" />
 				</section>
-				<Button htmlType="button" type="primary" size="medium" onClick={() => setOpen(true)}>
+				<Button htmlType="button" type="primary" size="medium" onClick={handleOpen}>
 					Оформить заказ
 				</Button>
 				{isOpen && (
