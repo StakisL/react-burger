@@ -12,6 +12,8 @@ Modal.propTypes = {
 	header: PropTypes.string,
 }
 
+const modalRoot = document.getElementById('modals')
+
 function Modal(props) {
 	useEffect(() => {
 		const close = (e) => {
@@ -47,7 +49,7 @@ function Modal(props) {
 							<section className={modalStyles.content_section}>{props.children}</section>
 						</div>
 					</ModalOverlay>,
-					document.body,
+					modalRoot,
 				)}
 		</>
 	)
