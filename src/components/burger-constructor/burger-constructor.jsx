@@ -11,8 +11,8 @@ BurgerConstructor.propTypes = {
 
 function BurgerConstructor(props) {
 	const [isOpen, setOpen] = useState(false)
-	const bun = props.data.find((element) => element.type === 'bun')
-	const ingredients = props.data.filter((element) => element.type !== 'bun')
+	const bun = React.useMemo(() => props.data.find((element) => element.type === 'bun'), [props.data])
+	const ingredients = React.useMemo(() => props.data.filter((element) => element.type !== 'bun'), [props.data])
 
 	const findTotalPrice = React.useMemo(
 		() => props.data.reduce((total, currentValue) => total + currentValue.price, 0),

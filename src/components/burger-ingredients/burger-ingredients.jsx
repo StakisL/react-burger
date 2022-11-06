@@ -15,9 +15,9 @@ function BurgerIngredients(props) {
 	const sauceRef = React.useRef(null)
 	const mainRef = React.useRef(null)
 
-	const bun = props.data.filter((element) => element.type === 'bun')
-	const sauce = props.data.filter((element) => element.type === 'sauce')
-	const main = props.data.filter((element) => element.type === 'main')
+	const bun = React.useMemo(() => props.data.filter((element) => element.type === 'bun'), [props.data])
+	const sauce = React.useMemo(() => props.data.filter((element) => element.type === 'sauce'), [props.data])
+	const main = React.useMemo(() => props.data.filter((element) => element.type === 'main'), [props.data])
 
 	const currentHandle = (val) => {
 		moveToView(val)
@@ -42,7 +42,9 @@ function BurgerIngredients(props) {
 
 	return (
 		<section className={burgerIngredientsStyles.burger_ingredients_container}>
-			<h1 className={` ${burgerIngredientsStyles.burger_ingredients_header} text_type_main-large ml-8 mt-10 mb-5`}>
+			<h1
+				className={` ${burgerIngredientsStyles.burger_ingredients_header} text_type_main-large ml-8 mt-10 mb-5`}
+			>
 				Соберите бургер
 			</h1>
 			<section className={burgerIngredientsStyles.burger_ingredients}>
