@@ -3,6 +3,7 @@ import burgerPropTypes from '../../utils/prop-types.jsx'
 import ingredientStyles from './burger-ingredient.module.css'
 import Modal from '../modal/modal.jsx'
 import { useState } from 'react'
+import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -27,7 +28,11 @@ function BurgerIngredient(props) {
 				</span>
 				<p className={`${ingredientStyles.ingredient_name}  text_type_main-default`}>{props.ingredient.name}</p>
 			</span>
-			<Modal type="ingredient" ingredient={props.ingredient} isOpen={isOpen} handleClose={handleClose} />
+			{isOpen && (
+				<Modal isOpen={isOpen} header="Детали ингредиента" handleClose={handleClose}>
+					<IngredientDetails ingredient={props.ingredient} />
+				</Modal>
+			)}
 		</>
 	)
 }

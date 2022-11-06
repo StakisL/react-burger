@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import burgerConstructorStyles from './burger-constructor.module.css'
 import burgerPropTypes from '../../utils/prop-types.jsx'
 import Modal from '../modal/modal'
+import OrderDetails from '../order-details/order-details'
 
 BurgerConstructor.propTypes = {
 	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
@@ -74,7 +75,11 @@ function BurgerConstructor(props) {
 				<Button htmlType="button" type="primary" size="medium" onClick={() => setOpen(true)}>
 					Оформить заказ
 				</Button>
-				<Modal type="order-details" isOpen={isOpen} handleClose={handleClose} />
+				{isOpen && (
+					<Modal isOpen={isOpen} handleClose={handleClose}>
+						<OrderDetails />
+					</Modal>
+				)}
 			</section>
 		</section>
 	)

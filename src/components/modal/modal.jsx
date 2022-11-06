@@ -4,15 +4,11 @@ import modalStyles from './modal.module.css'
 import PropTypes from 'prop-types'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import ModalOverlay from '../modal-overlay/modal-overlay'
-import IngredientDetails from '../ingredient-details/ingredient-details'
-import burgerPropTypes from '../../utils/prop-types'
-import OrderDetails from '../order-details/order-details'
 
 Modal.propTypes = {
 	isOpen: PropTypes.bool.isRequired,
-	type: PropTypes.string.isRequired,
-	ingredient: burgerPropTypes,
 	handleClose: PropTypes.func.isRequired,
+	header: PropTypes.string,
 }
 
 function Modal(props) {
@@ -41,19 +37,9 @@ function Modal(props) {
 								type="primary"
 								onClick={props.handleClose}
 							/>
-							{props.type === 'ingredient' && (
-								<p className={`${modalStyles.modal_header__name} text_type_main-large`}>
-									Детали ингредиента
-								</p>
-							)}
+							<p className={`${modalStyles.modal_header__name} text_type_main-large`}>{props.header}</p>
 						</section>
-						<section className={modalStyles.content_section}>
-							{props.type === 'ingredient' ? (
-								<IngredientDetails ingredient={props.ingredient} />
-							) : (
-								<OrderDetails />
-							)}
-						</section>
+						<section className={modalStyles.content_section}>{props.children}</section>
 					</div>
 				</ModalOverlay>,
 				document.body,
