@@ -29,19 +29,18 @@ function App() {
 				<p>В приложении произошла ошибка. Пожалуйста, перезагрузите страницу.</p>
 			</section>
 		)
-	} else {
-		return (
-			<React.Fragment>
-				<AppHeader className={appStyles.app_header} />
-				{isLoaded && (
-					<div className={appStyles.app_body}>
-						<BurgerIngredients data={burgersData} />
-						<BurgerConstructor data={burgersData} />
-					</div>
-				)}
-			</React.Fragment>
-		)
 	}
+	return (
+		<React.Fragment>
+			<AppHeader className={appStyles.app_header} />
+			{isLoaded && (
+				<div className={appStyles.app_body}>
+					<BurgerIngredients data={burgersData} />
+					<BurgerConstructor data={burgersData} />
+				</div>
+			)}
+		</React.Fragment>
+	)
 }
 
 export default App
