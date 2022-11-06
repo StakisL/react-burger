@@ -1,6 +1,8 @@
 .ingredient_detail{
     height: 435px;
     max-height: 720px;
+    background-color: #1C1C21;
+    border-radius: 5%;
 }
 
 .ingredient_info_list {
