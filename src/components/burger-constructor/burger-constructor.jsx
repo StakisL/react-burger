@@ -80,7 +80,7 @@ function BurgerConstructor(props) {
 					Оформить заказ
 				</Button>
 				{isOpen && (
-					<Modal isOpen={isOpen} handleClose={handleClose}>
+					<Modal handleClose={handleClose}>
 						<OrderDetails />
 					</Modal>
 				)}

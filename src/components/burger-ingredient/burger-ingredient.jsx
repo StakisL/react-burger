@@ -33,7 +33,7 @@ function BurgerIngredient(props) {
 				<p className={`${ingredientStyles.ingredient_name}  text_type_main-default`}>{props.ingredient.name}</p>
 			</span>
 			{isOpen && (
-				<Modal isOpen={isOpen} header="Детали ингредиента" handleClose={handleClose}>
+				<Modal header="Детали ингредиента" handleClose={handleClose}>
 					<IngredientDetails ingredient={props.ingredient} />
 				</Modal>
 			)}
