@@ -53,6 +53,10 @@
     align-content: center;
 }
 
+.nav_link__text_active {
+    color: #F2F2F3
+}
+
 .nav_link__text:active,
 .nav_link__text:link,
 .nav_link__text:visited {

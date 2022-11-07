@@ -14,22 +14,22 @@ Modal.propTypes = {
 
 const modalRoot = document.getElementById('modals')
 
-function Modal(props) {
+function Modal({ isOpen, handleClose, header, children }) {
 	useEffect(() => {
 		const close = (e) => {
 			if (e.keyCode === ESC_KEYCODE) {
-				props.handleClose()
+				handleClose()
 			}
 		}
 		window.addEventListener('keydown', close)
 		return () => window.removeEventListener('keydown', close)
-	}, [props])
+	}, [isOpen])
 
 	return (
 		<>
-			{props.isOpen &&
+			{isOpen &&
 				ReactDOM.createPortal(
-					<ModalOverlay handleClose={props.handleClose}>
+					<ModalOverlay handleClose={handleClose}>
 						<div
 							className={modalStyles.modal}
 							onClick={(e) => {
@@ -40,13 +40,11 @@ function Modal(props) {
 								<CloseIcon
 									className={modalStyles.modal_header__close_icon}
 									type="primary"
-									onClick={props.handleClose}
+									onClick={handleClose}
 								/>
-								<p className={`${modalStyles.modal_header__name} text_type_main-large`}>
-									{props.header}
-								</p>
+								<p className={`${modalStyles.modal_header__name} text_type_main-large`}>{header}</p>
 							</section>
-							<section className={modalStyles.content_section}>{props.children}</section>
+							<section className={modalStyles.content_section}>{children}</section>
 						</div>
 					</ModalOverlay>,
 					modalRoot,

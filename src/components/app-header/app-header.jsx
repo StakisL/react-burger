@@ -8,8 +8,8 @@ function AppHeader() {
 				<section className={headerStyles.nav_section}>
 					<span className={headerStyles.nav_link_container}>
 						<a className={headerStyles.nav_link} href="1">
-							<BurgerIcon className={headerStyles['ml-20']} type="secondary" />
-							<p className={`${headerStyles.nav_link__text} text_type_main-default`}>Конструктор</p>
+							<BurgerIcon className={headerStyles['ml-20']} type="primary" />
+							<p className={`${headerStyles.nav_link__text_active} text_type_main-default`}>Конструктор</p>
 						</a>
 						<a className={headerStyles.nav_link} href="2">
 							<ListIcon className={headerStyles.nav_link__logo} type="secondary" />
