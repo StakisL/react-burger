@@ -6,14 +6,14 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import { getIngredients } from '../../utils/burger-api'
 
 function App() {
-	const [burgersData, setBugersData] = useState()
+	const [burgersData, setBurgersData] = useState()
 	const [isLoaded, setLoaded] = useState(false)
 	const [error, setError] = useState(false)
 
 	useEffect(() => {
 		getIngredients()
 			.then((ingredients) => {
-				setBugersData(ingredients.data)
+				setBurgersData(ingredients.data)
 			})
 			.catch((error) => {
 				setError(error.toString())
