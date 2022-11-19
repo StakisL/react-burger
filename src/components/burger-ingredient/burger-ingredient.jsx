@@ -4,6 +4,8 @@ import ingredientStyles from './burger-ingredient.module.css'
 import Modal from '../modal/modal.jsx'
 import { useState } from 'react'
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
+import { useDispatch } from 'react-redux'
+import { ADD_ITEM } from '../../services/actions/burger-constructor.js'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -11,12 +13,14 @@ BurgerIngredient.propTypes = {
 
 function BurgerIngredient(props) {
 	const [isOpen, setOpen] = useState(false)
+	const dispatch = useDispatch()
 	const handleClose = () => {
 		setOpen(false)
 	}
 
 	const handleOpen = () => {
 		setOpen(true)
+		dispatch({ type: ADD_ITEM, item: props.ingredient })
 	}
 
 	return (

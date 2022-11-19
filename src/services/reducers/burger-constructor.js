@@ -25,9 +25,9 @@ const addItem = (state, action) => {
 		return
 	}
 
-	state.items.push(action.item)
 	return {
 		...state,
+		items: [...state.items, action.item],
 		isEmpty: false,
 	}
 }

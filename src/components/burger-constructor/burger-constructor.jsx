@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import burgerConstructorStyles from './burger-constructor.module.css'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
+import Bun from '../bun/bun'
 import { useSelector } from 'react-redux'
 
 function BurgerConstructor() {
@@ -48,16 +49,7 @@ function BurgerConstructor() {
 		<section className={`${burgerConstructorStyles.constructor} mt-25 mb-10`}>
 			{!isEmpty && (
 				<span>
-					<span className={`${burgerConstructorStyles.constructor_list_item} ml-5`}>
-						<ConstructorElement
-							className={burgerConstructorStyles.constructor_list_item__description}
-							text={bun.name + ' (верх)'}
-							type={bun.type}
-							price={bun.price}
-							thumbnail={bun.image}
-							isLocked={true}
-						/>
-					</span>
+					{bun !== undefined && <Bun bun={bun} type="top" />}
 					<ul className={burgerConstructorStyles.constructor_list}>
 						{ingredients.map((ingredient) => (
 							<section
@@ -82,16 +74,7 @@ function BurgerConstructor() {
 							</section>
 						))}
 					</ul>
-					<span className={`${burgerConstructorStyles.constructor_list_item} mb-10 ml-5`}>
-						<ConstructorElement
-							className={burgerConstructorStyles.constructor_list_item__description}
-							text={bun.name + ' (низ)'}
-							type={bun.type}
-							price={bun.price}
-							thumbnail={bun.image}
-							isLocked={true}
-						/>
-					</span>
+					{bun !== undefined && <Bun bun={bun} type="bottom" />}
 				</span>
 			)}
 			<section className={burgerConstructorStyles.order_info}>
