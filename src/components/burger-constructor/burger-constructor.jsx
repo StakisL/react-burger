@@ -1,24 +1,40 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import burgerConstructorStyles from './burger-constructor.module.css'
-import burgerPropTypes from '../../utils/prop-types.jsx'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
+import { useSelector } from 'react-redux'
 
-BurgerConstructor.propTypes = {
-	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
-}
-
-function BurgerConstructor(props) {
+function BurgerConstructor() {
 	const [isOpen, setOpen] = useState(false)
-	const bun = React.useMemo(() => props.data.find((element) => element.type === 'bun'), [props.data])
-	const ingredients = React.useMemo(() => props.data.filter((element) => element.type !== 'bun'), [props.data])
+	const items = useSelector((store) => store.constructor.items)
+	const isEmpty = useSelector((store) => store.constructor.isEmpty)
 
-	const findTotalPrice = React.useMemo(
-		() => props.data.reduce((total, currentValue) => total + currentValue.price, 0),
-		[props.data],
-	)
+	console.log(isEmpty)
+	console.log(items)
+
+	const bun = React.useMemo(() => {
+		if (isEmpty) {
+			return []
+		}
+
+		return items.find((element) => element.type === 'bun')
+	}, [items, isEmpty])
+	const ingredients = React.useMemo(() => {
+		if (isEmpty) {
+			return []
+		}
+
+		return items.filter((element) => element.type !== 'bun')
+	}, [items, isEmpty])
+
+	const findTotalPrice = React.useMemo(() => {
+		if (isEmpty) {
+			return 0
+		}
+
+		return items.reduce((total, currentValue) => total + currentValue.price, 0)
+	}, [items, isEmpty])
 
 	const handleClose = () => {
 		setOpen(false)
@@ -30,45 +46,54 @@ function BurgerConstructor(props) {
 
 	return (
 		<section className={`${burgerConstructorStyles.constructor} mt-25 mb-10`}>
-			<span className={`${burgerConstructorStyles.constructor_list_item} ml-5`}>
-				<ConstructorElement
-					className={burgerConstructorStyles.constructor_list_item__description}
-					text={bun.name + ' (верх)'}
-					type={bun.type}
-					price={bun.price}
-					thumbnail={bun.image}
-					isLocked={true}
-				/>
-			</span>
-			<ul className={burgerConstructorStyles.constructor_list}>
-				{ingredients.map((ingredient) => (
-					<section
-						className={`${burgerConstructorStyles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
-						key={ingredient._id}
-					>
-						<span className={`${burgerConstructorStyles.constructor_list_item__icon_container} mr-1`}>
-							<DragIcon className={burgerConstructorStyles.constructor_list_item__icon} type="primary" />
-						</span>
+			{!isEmpty && (
+				<span>
+					<span className={`${burgerConstructorStyles.constructor_list_item} ml-5`}>
 						<ConstructorElement
 							className={burgerConstructorStyles.constructor_list_item__description}
-							text={ingredient.name}
-							type={ingredient.type}
-							price={ingredient.price}
-							thumbnail={ingredient.image}
+							text={bun.name + ' (верх)'}
+							type={bun.type}
+							price={bun.price}
+							thumbnail={bun.image}
+							isLocked={true}
 						/>
-					</section>
-				))}
-			</ul>
-			<span className={`${burgerConstructorStyles.constructor_list_item} mb-10 ml-5`}>
-				<ConstructorElement
-					className={burgerConstructorStyles.constructor_list_item__description}
-					text={bun.name + ' (низ)'}
-					type={bun.type}
-					price={bun.price}
-					thumbnail={bun.image}
-					isLocked={true}
-				/>
-			</span>
+					</span>
+					<ul className={burgerConstructorStyles.constructor_list}>
+						{ingredients.map((ingredient) => (
+							<section
+								className={`${burgerConstructorStyles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
+								key={ingredient._id}
+							>
+								<span
+									className={`${burgerConstructorStyles.constructor_list_item__icon_container} mr-1`}
+								>
+									<DragIcon
+										className={burgerConstructorStyles.constructor_list_item__icon}
+										type="primary"
+									/>
+								</span>
+								<ConstructorElement
+									className={burgerConstructorStyles.constructor_list_item__description}
+									text={ingredient.name}
+									type={ingredient.type}
+									price={ingredient.price}
+									thumbnail={ingredient.image}
+								/>
+							</section>
+						))}
+					</ul>
+					<span className={`${burgerConstructorStyles.constructor_list_item} mb-10 ml-5`}>
+						<ConstructorElement
+							className={burgerConstructorStyles.constructor_list_item__description}
+							text={bun.name + ' (низ)'}
+							type={bun.type}
+							price={bun.price}
+							thumbnail={bun.image}
+							isLocked={true}
+						/>
+					</span>
+				</span>
+			)}
 			<section className={burgerConstructorStyles.order_info}>
 				<section className={`${burgerConstructorStyles.order_info_price} mr-10 ml-10`}>
 					<p className={`${burgerConstructorStyles.order_info_price__total} text_type_digits-medium mr-1`}>

@@ -8,17 +8,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
 	const dispatch = useDispatch()
-	const isLoaded = useSelector((store) => store.api.ingredientsRequest)
-	const error = useSelector((store) => store.api.ingredientsFailed)
-	const ingredients = useSelector((store) => store.api.ingredients)
-
-	console.log(ingredients)
+	const { ingredients, isLoading, hasError } = useSelector((store) => store.api)
 
 	useEffect(() => {
 		dispatch(getIngredients())
 	}, [dispatch])
 
-	if (error) {
+	if (hasError) {
 		return (
 			<section>
 				<h1>Что-то пошло не так :(</h1>
@@ -29,9 +25,9 @@ function App() {
 	return (
 		<React.Fragment>
 			<AppHeader className={appStyles.app_header} />
-			{isLoaded && (
+			{!isLoading && ingredients.length !== 0 && (
 				<div className={appStyles.app_body}>
-					<BurgerIngredients data={ingredients} />
+					<BurgerIngredients />
 					<BurgerConstructor data={ingredients} />
 				</div>
 			)}

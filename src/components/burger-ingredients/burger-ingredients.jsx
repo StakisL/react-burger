@@ -1,23 +1,19 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
-import PropTypes from 'prop-types'
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
-import burgerPropTypes from '../../utils/prop-types.jsx'
+import { useSelector } from 'react-redux'
 
-BurgerIngredients.propTypes = {
-	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
-}
-
-function BurgerIngredients(props) {
+function BurgerIngredients() {
 	const [current, setCurrent] = React.useState('bun')
+	const ingredients = useSelector((store) => store.api.ingredients)
 	const bunRef = React.useRef(null)
 	const sauceRef = React.useRef(null)
 	const mainRef = React.useRef(null)
 
-	const bun = React.useMemo(() => props.data.filter((element) => element.type === 'bun'), [props.data])
-	const sauce = React.useMemo(() => props.data.filter((element) => element.type === 'sauce'), [props.data])
-	const main = React.useMemo(() => props.data.filter((element) => element.type === 'main'), [props.data])
+	const bun = React.useMemo(() => ingredients.filter((element) => element.type === 'bun'), [ingredients])
+	const sauce = React.useMemo(() => ingredients.filter((element) => element.type === 'sauce'), [ingredients])
+	const main = React.useMemo(() => ingredients.filter((element) => element.type === 'main'), [ingredients])
 
 	const currentHandle = (val) => {
 		moveToView(val)

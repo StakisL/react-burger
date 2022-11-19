@@ -2,8 +2,8 @@ import { GET_INGREDIENTS_FAILED, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_REQUES
 
 const initialState = {
 	ingredients: [],
-	ingredientsRequest: false,
-	ingredientsFailed: false,
+	isLoading: false,
+	hasError: false,
 }
 
 export const AppReducer = (state = initialState, action) => {
@@ -11,22 +11,22 @@ export const AppReducer = (state = initialState, action) => {
 		case GET_INGREDIENTS_REQUEST: {
 			return {
 				...state,
-				ingredientsRequest: true,
+				isLoading: true,
 			}
 		}
 		case GET_INGREDIENTS_SUCCESS: {
 			return {
 				...state,
-				ingredientsFailed: false,
-				ingredientsRequest: false,
+				hasError: false,
+				isLoading: false,
 				ingredients: action.ingredients,
 			}
 		}
 		case GET_INGREDIENTS_FAILED: {
 			return {
 				...state,
-				ingredientsFailed: true,
-				ingredientsRequest: false,
+				hasError: true,
+				isLoading: false,
 			}
 		}
 		default: {
