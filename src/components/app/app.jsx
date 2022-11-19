@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import appStyles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import { getIngredients } from '../../utils/burger-api'
+import { getIngredients } from '../../services/actions/app'
+import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
-	const [burgersData, setBurgersData] = useState()
-	const [isLoaded, setLoaded] = useState(false)
-	const [error, setError] = useState(false)
+	const dispatch = useDispatch()
+	const isLoaded = useSelector((store) => store.api.ingredientsRequest)
+	const error = useSelector((store) => store.api.ingredientsFailed)
+	const ingredients = useSelector((store) => store.api.ingredients)
+
+	console.log(ingredients)
 
 	useEffect(() => {
-		getIngredients()
-			.then((ingredients) => {
-				setBurgersData(ingredients.data)
-			})
-			.catch((error) => {
-				setError(error.toString())
-				console.error('Api request was failed', error)
-			})
-			.finally(() => setLoaded(true))
-	}, [])
+		dispatch(getIngredients())
+	}, [dispatch])
 
 	if (error) {
 		return (
@@ -35,8 +31,8 @@ function App() {
 			<AppHeader className={appStyles.app_header} />
 			{isLoaded && (
 				<div className={appStyles.app_body}>
-					<BurgerIngredients data={burgersData} />
-					<BurgerConstructor data={burgersData} />
+					<BurgerIngredients data={ingredients} />
+					<BurgerConstructor data={ingredients} />
 				</div>
 			)}
 		</React.Fragment>

@@ -1,8 +1,8 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { BurgerConstructorReducer } from "./burger-constructor";
-import { BurgerIngredientsReducer } from "./burger-ingredients";
+import { combineReducers } from '@reduxjs/toolkit'
+import { BurgerConstructorReducer } from './burger-constructor'
+import { AppReducer } from './app'
 
 export const rootReducer = combineReducers({
-    constructor: BurgerConstructorReducer,
-    ingredients: BurgerIngredientsReducer
+	constructor: BurgerConstructorReducer,
+	api: AppReducer,
 })

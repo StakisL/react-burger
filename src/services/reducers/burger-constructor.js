@@ -1,2 +1,3 @@
-
-export const BurgerConstructorReducer = () => {}
+export const BurgerConstructorReducer = () => {
+	return null
+}
