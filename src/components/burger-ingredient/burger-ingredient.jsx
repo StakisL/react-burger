@@ -13,22 +13,27 @@ BurgerIngredient.propTypes = {
 }
 
 function BurgerIngredient(props) {
-	const [isOpen, setOpen] = useState(false)
 	const dispatch = useDispatch()
-	const storeCounters = useSelector((store) => store.ingredients.items)
+	const [isOpen, setOpen] = useState(false)
+	const itemsCounter = useSelector((store) => store.ingredients.items)
+	const bunCount = useSelector((store) => store.ingredients.bunCounter)
 	const handleClose = () => {
 		setOpen(false)
 	}
 
 	const itemCount = useMemo(() => {
-		let item = storeCounters.find((e) => e.id === props.ingredient._id)
+		if (props.ingredient.type === 'bun' && props.ingredient._id === bunCount.id) {
+			return bunCount === undefined ? 0 : bunCount.count
+		}
+
+		let item = itemsCounter.find((e) => e.id === props.ingredient._id)
 		return item === undefined ? 0 : item.count
-	}, [storeCounters, props.ingredient._id])
+	}, [itemsCounter, props.ingredient, bunCount])
 
 	const handleOpen = () => {
 		setOpen(true)
 		dispatch({ type: ADD_ITEM, item: props.ingredient })
-		dispatch({ type: INGREDIENT_INCREASE, id: props.ingredient._id })
+		dispatch({ type: INGREDIENT_INCREASE, id: props.ingredient._id, ingredientType: props.ingredient.type })
 	}
 
 	return (
