@@ -3,6 +3,7 @@ import { ADD_ITEM, DELETE_ITEM } from '../actions/burger-constructor'
 const initialState = {
 	items: [],
 	isEmpty: true,
+	bun: undefined,
 }
 
 export const BurgerConstructorReducer = (state = initialState, action) => {
@@ -20,9 +21,11 @@ export const BurgerConstructorReducer = (state = initialState, action) => {
 }
 
 const addItem = (state, action) => {
-	if (state.items.some((t) => t.type === 'bun') && action.item.type === 'bun') {
-		console.error('bun already added')
-		return
+	if (action.item.type === 'bun') {
+		return {
+			...state,
+			bun: state.bun === undefined ? action.item : console.error('Bun was already added'),
+		}
 	}
 
 	return {
@@ -37,9 +40,12 @@ const removeItem = (state, action) => {
 		return
 	}
 
-	state.items.filter((element) => element._id !== action.id)
+	console.log(state.items)
+	console.log(action.id)
+
 	return {
 		...state,
 		isEmpty: state.items.length === 0,
+		items: state.items.filter((_, index) => index !== action.id),
 	}
 }

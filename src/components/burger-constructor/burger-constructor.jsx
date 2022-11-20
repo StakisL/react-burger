@@ -4,38 +4,23 @@ import burgerConstructorStyles from './burger-constructor.module.css'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import Bun from '../bun/bun'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { DELETE_ITEM } from '../../services/actions/burger-constructor'
 
 function BurgerConstructor() {
 	const [isOpen, setOpen] = useState(false)
-	const items = useSelector((store) => store.constructor.items)
+	const ingredients = useSelector((store) => store.constructor.items)
 	const isEmpty = useSelector((store) => store.constructor.isEmpty)
-
-	console.log(isEmpty)
-	console.log(items)
-
-	const bun = React.useMemo(() => {
-		if (isEmpty) {
-			return []
-		}
-
-		return items.find((element) => element.type === 'bun')
-	}, [items, isEmpty])
-	const ingredients = React.useMemo(() => {
-		if (isEmpty) {
-			return []
-		}
-
-		return items.filter((element) => element.type !== 'bun')
-	}, [items, isEmpty])
+	const bun = useSelector((store) => store.constructor.bun)
+	const dispatch = useDispatch()
 
 	const findTotalPrice = React.useMemo(() => {
 		if (isEmpty) {
 			return 0
 		}
 
-		return items.reduce((total, currentValue) => total + currentValue.price, 0)
-	}, [items, isEmpty])
+		return ingredients.reduce((total, currentValue) => total + currentValue.price, 0)
+	}, [ingredients, isEmpty])
 
 	const handleClose = () => {
 		setOpen(false)
@@ -45,16 +30,20 @@ function BurgerConstructor() {
 		setOpen(true)
 	}
 
+	const removeIngredient = (id) => {
+		dispatch({ type: DELETE_ITEM, id: id })
+	}
+
 	return (
-		<section className={`${burgerConstructorStyles.constructor} mt-25 mb-10`}>
-			{!isEmpty && (
-				<span>
-					{bun !== undefined && <Bun bun={bun} type="top" />}
+		<section className={`${burgerConstructorStyles.constructor} mt-25`}>
+			<span>
+				{bun !== undefined && <Bun bun={bun} type="top" />}
+				{!isEmpty ? (
 					<ul className={burgerConstructorStyles.constructor_list}>
-						{ingredients.map((ingredient) => (
+						{ingredients.map((ingredient, index) => (
 							<section
 								className={`${burgerConstructorStyles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
-								key={ingredient._id}
+								key={index}
 							>
 								<span
 									className={`${burgerConstructorStyles.constructor_list_item__icon_container} mr-1`}
@@ -70,14 +59,18 @@ function BurgerConstructor() {
 									type={ingredient.type}
 									price={ingredient.price}
 									thumbnail={ingredient.image}
+									handleClose={() => removeIngredient(index)}
 								/>
 							</section>
 						))}
 					</ul>
-					{bun !== undefined && <Bun bun={bun} type="bottom" />}
-				</span>
-			)}
-			<section className={burgerConstructorStyles.order_info}>
+				) : (
+					<div className="empty-container mt-4 mb-4" />
+				)}
+
+				{bun !== undefined && <Bun bun={bun} type="bottom" />}
+			</span>
+			<section className={`${burgerConstructorStyles.order_info} mt-10`}>
 				<section className={`${burgerConstructorStyles.order_info_price} mr-10 ml-10`}>
 					<p className={`${burgerConstructorStyles.order_info_price__total} text_type_digits-medium mr-1`}>
 						{findTotalPrice}
