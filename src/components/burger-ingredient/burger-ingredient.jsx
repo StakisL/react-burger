@@ -7,6 +7,7 @@ import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_ITEM } from '../../services/actions/burger-constructor.js'
 import { INGREDIENT_INCREASE } from '../../services/actions/burger-ingredients.js'
+import { SET_INGREDIENT_DETAILS } from '../../services/actions/ingredient-details.js'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -34,6 +35,7 @@ function BurgerIngredient(props) {
 		setOpen(true)
 		dispatch({ type: ADD_ITEM, item: props.ingredient })
 		dispatch({ type: INGREDIENT_INCREASE, id: props.ingredient._id, ingredientType: props.ingredient.type })
+		dispatch({ type: SET_INGREDIENT_DETAILS, ingredient: props.ingredient })
 	}
 
 	return (
@@ -54,7 +56,7 @@ function BurgerIngredient(props) {
 			</span>
 			{isOpen && (
 				<Modal header="Детали ингредиента" handleClose={handleClose}>
-					<IngredientDetails ingredient={props.ingredient} />
+					<IngredientDetails />
 				</Modal>
 			)}
 		</>
