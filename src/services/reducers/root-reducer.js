@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { BurgerConstructorReducer } from './burger-constructor'
-import { AppReducer } from './app'
+import { burgerConstructorReducer } from './burger-constructor'
+import { appReducer } from './app'
+import { orderDetailsReducer } from './order-details'
 
 export const rootReducer = combineReducers({
-	constructor: BurgerConstructorReducer,
-	api: AppReducer,
+	constructor: burgerConstructorReducer,
+	api: appReducer,
+	order: orderDetailsReducer,
 })

@@ -5,22 +5,22 @@ import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import Bun from '../bun/bun'
 import { useSelector, useDispatch } from 'react-redux'
-import { DELETE_ITEM, order } from '../../services/actions/burger-constructor'
+import { DELETE_ITEM } from '../../services/actions/burger-constructor'
+import { order } from '../../services/actions/order-details'
 
 function BurgerConstructor() {
 	const [isOpen, setOpen] = useState(false)
 	const ingredients = useSelector((store) => store.constructor.items)
 	const isEmpty = useSelector((store) => store.constructor.isEmpty)
 	const bun = useSelector((store) => store.constructor.bun)
-	const isOrderCreated = useSelector((store) => store.constructor.success)
 	const dispatch = useDispatch()
 
 	const findTotalPrice = React.useMemo(() => {
-		if (isEmpty) {
+		if (isEmpty && bun === undefined) {
 			return 0
 		}
-		let bunPrice = bun === undefined ? 0 : bun.price * 2
 
+		let bunPrice = bun === undefined ? 0 : bun.price * 2
 		return ingredients.reduce((total, currentValue) => total + currentValue.price, 0) + bunPrice
 	}, [ingredients, isEmpty, bun])
 

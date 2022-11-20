@@ -6,7 +6,7 @@ const initialState = {
 	hasError: false,
 }
 
-export const AppReducer = (state = initialState, action) => {
+export const appReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_INGREDIENTS_REQUEST: {
 			return {

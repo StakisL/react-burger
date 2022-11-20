@@ -1,10 +1,4 @@
-import {
-	ADD_ITEM,
-	DELETE_ITEM,
-	CREATE_ORDER_FAILED,
-	CREATE_ORDER_REQUEST,
-	CREATE_ORDER_SUCCESS,
-} from '../actions/burger-constructor'
+import { ADD_ITEM, DELETE_ITEM } from '../actions/burger-constructor'
 
 const initialState = {
 	items: [],
@@ -12,40 +6,15 @@ const initialState = {
 	bun: undefined,
 	isLoading: false,
 	hasError: false,
-	success: false,
-	order: undefined,
 }
 
-export const BurgerConstructorReducer = (state = initialState, action) => {
+export const burgerConstructorReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_ITEM: {
 			return addItem(state, action)
 		}
 		case DELETE_ITEM: {
 			return removeItem(state, action)
-		}
-		case CREATE_ORDER_REQUEST: {
-			return {
-				...state,
-				isLoading: true,
-				success: false,
-			}
-		}
-		case CREATE_ORDER_SUCCESS: {
-			return {
-				...state,
-				hasError: false,
-				isLoading: false,
-				success: action.order.success,
-				order: action.order,
-			}
-		}
-		case CREATE_ORDER_FAILED: {
-			return {
-				...state,
-				hasError: true,
-				isLoading: false,
-			}
 		}
 		default: {
 			return state
@@ -55,10 +24,6 @@ export const BurgerConstructorReducer = (state = initialState, action) => {
 
 const addItem = (state, action) => {
 	if (action.item.type === 'bun') {
-		if (state.bun !== undefined) {
-			console.error('Bun was already added')
-			return state
-		}
 		return {
 			...state,
 			bun: action.item,
