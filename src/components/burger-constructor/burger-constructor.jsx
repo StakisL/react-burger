@@ -66,7 +66,7 @@ function BurgerConstructor() {
 						))}
 					</ul>
 				) : (
-					<div className="empty-container mt-4 mb-4" />
+					<div className={`${bun === undefined ? burgerConstructorStyles.empty_container : burgerConstructorStyles.empty_container_with_buns} mt-4 mb-4`}/>
 				)}
 
 				{bun !== undefined && <Bun bun={bun} type="bottom" />}
