@@ -36,6 +36,29 @@ function BurgerIngredients() {
 		}
 	}
 
+	const onScroll = (e) => {
+		let scrollTop = e.currentTarget.scrollTop
+		if (scrollTop <= bunRef.current.offsetTop) {
+			setCurrent('bun')
+			return
+		}
+
+		if (scrollTop > bunRef.current.offsetTop && scrollTop <= sauceRef.current.offsetTop) {
+			setCurrent('sauce')
+			return
+		}
+
+		if (scrollTop > sauceRef.current.offsetTop) {
+			setCurrent('main')
+			return
+		}
+
+		console.log('bun', bunRef.current.offsetTop)
+		console.log('sauce', sauceRef.current.offsetTop)
+		console.log('main', mainRef.current.offsetTop)
+		console.log('ul-scroll', e.currentTarget.scrollTop)
+	}
+
 	return (
 		<section className={burgerIngredientsStyles.burger_ingredients_container}>
 			<h1
@@ -55,7 +78,7 @@ function BurgerIngredients() {
 						Начинки
 					</Tab>
 				</section>
-				<ul className={burgerIngredientsStyles.burger_ingredients_list}>
+				<ul className={burgerIngredientsStyles.burger_ingredients_list} onScroll={onScroll}>
 					<div className={burgerIngredientsStyles.ref_container} ref={bunRef}>
 						<IngredientsList type="Булки" ingredients={bun} />
 					</div>

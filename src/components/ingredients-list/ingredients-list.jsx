@@ -11,7 +11,7 @@ IngredientsList.propTypes = {
 function IngredientsList(props) {
 	return (
 		<section className={ingredientListStyles.ingredients_list} ref={props.ref}>
-			<h2 className={`${ingredientListStyles.ingredients_list_header} ml-8`}>{props.type}</h2>
+			<h2 className={`${ingredientListStyles.ingredients_list_header} ml-8`} id="buns">{props.type}</h2>
 			<ul className={ingredientListStyles.ingredients_list_items_container}>
 				{props.ingredients.map((ingredient) => (
 					<BurgerIngredient key={ingredient._id} ingredient={ingredient} />
