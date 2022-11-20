@@ -18,9 +18,10 @@ function BurgerConstructor() {
 		if (isEmpty) {
 			return 0
 		}
+		let bunPrice = bun === undefined ? 0 : bun.price * 2
 
-		return ingredients.reduce((total, currentValue) => total + currentValue.price, 0)
-	}, [ingredients, isEmpty])
+		return ingredients.reduce((total, currentValue) => total + currentValue.price, 0) + bunPrice
+	}, [ingredients, isEmpty, bun])
 
 	const handleClose = () => {
 		setOpen(false)
