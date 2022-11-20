@@ -22,9 +22,13 @@ export const BurgerConstructorReducer = (state = initialState, action) => {
 
 const addItem = (state, action) => {
 	if (action.item.type === 'bun') {
+		if (state.bun !== undefined) {
+			console.error('Bun was already added')
+			return state
+		}
 		return {
 			...state,
-			bun: state.bun === undefined ? action.item : console.error('Bun was already added'),
+			bun: action.item,
 		}
 	}
 
