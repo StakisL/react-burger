@@ -1,4 +1,4 @@
-import { INGREDIENT_DECREASE, INGREDIENT_INCREASE } from '../actions/burger-ingredients'
+import { INGREDIENT_DECREASE, INGREDIENT_INCREASE, SET_DEFAULT_COUNTER } from '../actions/burger-ingredients'
 
 const initialState = {
 	items: [],
@@ -6,7 +6,6 @@ const initialState = {
 }
 
 export const burgerIngredientsReducer = (state = initialState, action) => {
-	console.log(action)
 	switch (action.type) {
 		case INGREDIENT_INCREASE: {
 			return ingredientIncrease(state, action)
@@ -16,6 +15,9 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
 				...state,
 				items: ingredientDecrease(state, action),
 			}
+		}
+		case SET_DEFAULT_COUNTER: {
+			return initialState
 		}
 		default: {
 			return state

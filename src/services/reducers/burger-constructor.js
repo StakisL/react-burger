@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM } from '../actions/burger-constructor'
+import { ADD_ITEM, DELETE_ITEM, SET_DEFAULT_CONSTRUCTOR } from '../actions/burger-constructor'
 
 const initialState = {
 	items: [],
@@ -15,6 +15,9 @@ export const burgerConstructorReducer = (state = initialState, action) => {
 		}
 		case DELETE_ITEM: {
 			return removeItem(state, action)
+		}
+		case SET_DEFAULT_CONSTRUCTOR: {
+			return initialState
 		}
 		default: {
 			return state

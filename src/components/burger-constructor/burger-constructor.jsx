@@ -5,16 +5,16 @@ import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import Bun from '../bun/bun'
 import { useSelector, useDispatch } from 'react-redux'
-import { DELETE_ITEM } from '../../services/actions/burger-constructor'
+import { DELETE_ITEM, SET_DEFAULT_CONSTRUCTOR } from '../../services/actions/burger-constructor'
 import { order } from '../../services/actions/order-details'
-import { INGREDIENT_DECREASE } from '../../services/actions/burger-ingredients'
+import { INGREDIENT_DECREASE, SET_DEFAULT_COUNTER } from '../../services/actions/burger-ingredients'
 
 function BurgerConstructor() {
+	const dispatch = useDispatch()
 	const [isOpen, setOpen] = useState(false)
 	const ingredients = useSelector((store) => store.constructor.items)
 	const isEmpty = useSelector((store) => store.constructor.isEmpty)
 	const bun = useSelector((store) => store.constructor.bun)
-	const dispatch = useDispatch()
 
 	const findTotalPrice = React.useMemo(() => {
 		if (isEmpty && bun === undefined) {
@@ -27,6 +27,8 @@ function BurgerConstructor() {
 
 	const handleClose = () => {
 		setOpen(false)
+		dispatch({ type: SET_DEFAULT_CONSTRUCTOR })
+		dispatch({ type: SET_DEFAULT_COUNTER })
 	}
 
 	function ingredientsForOrder() {

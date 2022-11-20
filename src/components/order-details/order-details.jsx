@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 function OrderDetails() {
 	const orderNumber = useSelector((store) => store.order.orderNumber)
+
 	return (
 		<section className={`${detailStyles.order_details} mt-12 mb-15`}>
 			<p className={`${detailStyles.order_number} text_type_digits-large`}> {orderNumber}</p>
