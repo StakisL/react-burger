@@ -5,13 +5,14 @@ import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import Bun from '../bun/bun'
 import { useSelector, useDispatch } from 'react-redux'
-import { DELETE_ITEM } from '../../services/actions/burger-constructor'
+import { DELETE_ITEM, order } from '../../services/actions/burger-constructor'
 
 function BurgerConstructor() {
 	const [isOpen, setOpen] = useState(false)
 	const ingredients = useSelector((store) => store.constructor.items)
 	const isEmpty = useSelector((store) => store.constructor.isEmpty)
 	const bun = useSelector((store) => store.constructor.bun)
+	const isOrderCreated = useSelector((store) => store.constructor.success)
 	const dispatch = useDispatch()
 
 	const findTotalPrice = React.useMemo(() => {
@@ -27,8 +28,26 @@ function BurgerConstructor() {
 		setOpen(false)
 	}
 
+	function ingredientsForOrder() {
+		let ingredientIds = []
+		ingredientIds.push(bun._id)
+		ingredients.forEach((element) => {
+			ingredientIds.push(element._id)
+		})
+
+		ingredientIds.push(bun._id)
+
+		return ingredientIds
+	}
+
 	const handleOpen = () => {
-		setOpen(true)
+		if (bun !== undefined && ingredients.length !== 0) {
+			let ingredientIds = ingredientsForOrder()
+			dispatch(order(ingredientIds))
+			setOpen(true)
+			return
+		}
+		console.error('you should add bun or ingredients')
 	}
 
 	const removeIngredient = (id) => {
@@ -66,7 +85,13 @@ function BurgerConstructor() {
 						))}
 					</ul>
 				) : (
-					<div className={`${bun === undefined ? burgerConstructorStyles.empty_container : burgerConstructorStyles.empty_container_with_buns} mt-4 mb-4`}/>
+					<div
+						className={`${
+							bun === undefined
+								? burgerConstructorStyles.empty_container
+								: burgerConstructorStyles.empty_container_with_buns
+						} mt-4 mb-4`}
+					/>
 				)}
 
 				{bun !== undefined && <Bun bun={bun} type="bottom" />}
