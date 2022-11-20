@@ -28,7 +28,7 @@ function App() {
 			{!isLoading && ingredients.length !== 0 && (
 				<div className={appStyles.app_body}>
 					<BurgerIngredients />
-					<BurgerConstructor data={ingredients} />
+					<BurgerConstructor />
 				</div>
 			)}
 		</React.Fragment>

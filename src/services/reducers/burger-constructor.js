@@ -42,9 +42,6 @@ const removeItem = (state, action) => {
 		return
 	}
 
-	console.log(state.items)
-	console.log(action.id)
-
 	return {
 		...state,
 		isEmpty: state.items.length === 0,

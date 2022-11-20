@@ -14,6 +14,7 @@ export function order(ingredients) {
 					type: CREATE_ORDER_SUCCESS,
 					orderNumber: res.order.number,
 					success: res.success,
+					name: res.name,
 				})
 			} else {
 				dispatch({

@@ -1,11 +1,12 @@
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import burgerPropTypes from '../../utils/prop-types.jsx'
 import ingredientStyles from './burger-ingredient.module.css'
 import Modal from '../modal/modal.jsx'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ADD_ITEM } from '../../services/actions/burger-constructor.js'
+import { INGREDIENT_INCREASE } from '../../services/actions/burger-ingredients.js'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -14,19 +15,29 @@ BurgerIngredient.propTypes = {
 function BurgerIngredient(props) {
 	const [isOpen, setOpen] = useState(false)
 	const dispatch = useDispatch()
+	const storeCounters = useSelector((store) => store.ingredients.items)
 	const handleClose = () => {
 		setOpen(false)
 	}
 
+	const itemCount = useMemo(() => {
+		let item = storeCounters.find((e) => e.id === props.ingredient._id)
+		return item === undefined ? 0 : item.count
+	}, [storeCounters, props.ingredient._id])
+
 	const handleOpen = () => {
 		setOpen(true)
 		dispatch({ type: ADD_ITEM, item: props.ingredient })
+		dispatch({ type: INGREDIENT_INCREASE, id: props.ingredient._id })
 	}
 
 	return (
 		<>
 			<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
-				<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
+				<div className={ingredientStyles.image_container}>
+					<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
+					{itemCount !== 0 && <Counter count={itemCount} size="small" />}
+				</div>
 				<span className={ingredientStyles.ingredient_price}>
 					<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>
 						{' '}

@@ -3,6 +3,7 @@ import { CREATE_ORDER_FAILED, CREATE_ORDER_SUCCESS, CREATE_ORDER_REQUEST } from 
 const initialState = {
 	success: false,
 	orderNumber: undefined,
+	name: undefined,
 }
 
 export const orderDetailsReducer = (state = initialState, action) => {
@@ -18,6 +19,7 @@ export const orderDetailsReducer = (state = initialState, action) => {
 				...state,
 				success: action.success,
 				orderNumber: action.orderNumber,
+				name: action.name,
 			}
 		}
 		case CREATE_ORDER_FAILED: {
