@@ -7,6 +7,7 @@ import Bun from '../bun/bun'
 import { useSelector, useDispatch } from 'react-redux'
 import { DELETE_ITEM } from '../../services/actions/burger-constructor'
 import { order } from '../../services/actions/order-details'
+import { INGREDIENT_DECREASE } from '../../services/actions/burger-ingredients'
 
 function BurgerConstructor() {
 	const [isOpen, setOpen] = useState(false)
@@ -50,8 +51,9 @@ function BurgerConstructor() {
 		console.error('you should add bun or ingredients')
 	}
 
-	const removeIngredient = (id) => {
+	const removeIngredient = (ingredient, id) => {
 		dispatch({ type: DELETE_ITEM, id: id })
+		dispatch({ type: INGREDIENT_DECREASE, id: ingredient._id })
 	}
 
 	return (
@@ -79,7 +81,7 @@ function BurgerConstructor() {
 									type={ingredient.type}
 									price={ingredient.price}
 									thumbnail={ingredient.image}
-									handleClose={() => removeIngredient(index)}
+									handleClose={() => removeIngredient(ingredient, index)}
 								/>
 							</section>
 						))}
