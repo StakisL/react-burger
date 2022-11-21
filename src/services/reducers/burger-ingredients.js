@@ -54,7 +54,7 @@ function ingredientIncrease(state, action) {
 
 function ingredientDecrease(state, action) {
 	if (state.items.find((e) => e.id === action.id) === undefined) {
-		return [...state.items, { id: action.id, count: 1 }]
+		return state
 	}
 
 	return state.items.map((element) => {

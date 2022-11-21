@@ -5,6 +5,8 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import { getIngredients } from '../../services/actions/app'
 import { useDispatch, useSelector } from 'react-redux'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function App() {
 	const dispatch = useDispatch()
@@ -26,10 +28,12 @@ function App() {
 		<React.Fragment>
 			<AppHeader className={appStyles.app_header} />
 			{!isLoading && ingredients.length !== 0 && (
-				<div className={appStyles.app_body}>
-					<BurgerIngredients />
-					<BurgerConstructor />
-				</div>
+				<DndProvider backend={HTML5Backend}>
+					<div className={appStyles.app_body}>
+						<BurgerIngredients />
+						<BurgerConstructor />
+					</div>
+				</DndProvider>
 			)}
 		</React.Fragment>
 	)

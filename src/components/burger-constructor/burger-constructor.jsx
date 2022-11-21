@@ -5,9 +5,14 @@ import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import Bun from '../bun/bun'
 import { useSelector, useDispatch } from 'react-redux'
-import { DELETE_ITEM, SET_DEFAULT_CONSTRUCTOR } from '../../services/actions/burger-constructor'
+import { DELETE_ITEM, SET_DEFAULT_CONSTRUCTOR, ADD_ITEM } from '../../services/actions/burger-constructor'
 import { order } from '../../services/actions/order-details'
-import { INGREDIENT_DECREASE, SET_DEFAULT_COUNTER } from '../../services/actions/burger-ingredients'
+import {
+	INGREDIENT_INCREASE,
+	INGREDIENT_DECREASE,
+	SET_DEFAULT_COUNTER,
+} from '../../services/actions/burger-ingredients'
+import { useDrop } from 'react-dnd'
 
 function BurgerConstructor() {
 	const dispatch = useDispatch()
@@ -15,6 +20,12 @@ function BurgerConstructor() {
 	const ingredients = useSelector((store) => store.constructor.items)
 	const isEmpty = useSelector((store) => store.constructor.isEmpty)
 	const bun = useSelector((store) => store.constructor.bun)
+	const [, dropTarget] = useDrop(() => ({
+		accept: 'ingredient',
+		drop(item) {
+			onDropHandler(item)
+		},
+	}))
 
 	const findTotalPrice = React.useMemo(() => {
 		if (isEmpty && bun === undefined) {
@@ -25,10 +36,9 @@ function BurgerConstructor() {
 		return ingredients.reduce((total, currentValue) => total + currentValue.price, 0) + bunPrice
 	}, [ingredients, isEmpty, bun])
 
-	const handleClose = () => {
-		setOpen(false)
-		dispatch({ type: SET_DEFAULT_CONSTRUCTOR })
-		dispatch({ type: SET_DEFAULT_COUNTER })
+	const onDropHandler = (item) => {
+		dispatch({ type: ADD_ITEM, item: item })
+		dispatch({ type: INGREDIENT_INCREASE, id: item._id, ingredientType: item.type })
 	}
 
 	function ingredientsForOrder() {
@@ -53,13 +63,19 @@ function BurgerConstructor() {
 		console.error('you should add bun or ingredients')
 	}
 
+	const handleClose = () => {
+		setOpen(false)
+		dispatch({ type: SET_DEFAULT_CONSTRUCTOR })
+		dispatch({ type: SET_DEFAULT_COUNTER })
+	}
+
 	const removeIngredient = (ingredient, id) => {
 		dispatch({ type: DELETE_ITEM, id: id })
 		dispatch({ type: INGREDIENT_DECREASE, id: ingredient._id })
 	}
 
 	return (
-		<section className={`${burgerConstructorStyles.constructor} mt-25`}>
+		<section className={`${burgerConstructorStyles.constructor} mt-25`} ref={dropTarget}>
 			<span>
 				{bun !== undefined && <Bun bun={bun} type="top" />}
 				{!isEmpty ? (

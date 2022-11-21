@@ -48,15 +48,8 @@ function BurgerIngredients() {
 			return
 		}
 
-		if (scrollTop > sauceRef.current.offsetTop) {
-			setCurrent('main')
-			return
-		}
-
-		console.log('bun', bunRef.current.offsetTop)
-		console.log('sauce', sauceRef.current.offsetTop)
-		console.log('main', mainRef.current.offsetTop)
-		console.log('ul-scroll', e.currentTarget.scrollTop)
+		setCurrent('main')
+		return
 	}
 
 	return (

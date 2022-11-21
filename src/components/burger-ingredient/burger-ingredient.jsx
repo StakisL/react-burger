@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ADD_ITEM } from '../../services/actions/burger-constructor.js'
 import { INGREDIENT_INCREASE } from '../../services/actions/burger-ingredients.js'
 import { SET_INGREDIENT_DETAILS } from '../../services/actions/ingredient-details.js'
+import { useDrag } from 'react-dnd'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -18,6 +19,14 @@ function BurgerIngredient(props) {
 	const [isOpen, setOpen] = useState(false)
 	const itemsCounter = useSelector((store) => store.ingredients.items)
 	const bunCount = useSelector((store) => store.ingredients.bunCounter)
+	const [{ isDrag }, dragRef] = useDrag({
+		type: 'ingredient',
+		item: props.ingredient,
+		collect: (monitor) => ({
+			isDrag: monitor.isDragging(),
+		}),
+	})
+
 	const handleClose = () => {
 		setOpen(false)
 	}
@@ -39,27 +48,31 @@ function BurgerIngredient(props) {
 	}
 
 	return (
-		<>
-			<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
-				<div className={ingredientStyles.image_container}>
-					<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
-					{itemCount !== 0 && <Counter count={itemCount} size="small" />}
-				</div>
-				<span className={ingredientStyles.ingredient_price}>
-					<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>
-						{' '}
-						{props.ingredient.price}
+		!isDrag && (
+			<div ref={dragRef}>
+				<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
+					<div className={ingredientStyles.image_container}>
+						<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
+						{itemCount !== 0 && <Counter count={itemCount} size="small" />}
+					</div>
+					<span className={ingredientStyles.ingredient_price}>
+						<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>
+							{' '}
+							{props.ingredient.price}
+						</p>
+						<CurrencyIcon className={ingredientStyles.ingredient_currency} type="primary" />
+					</span>
+					<p className={`${ingredientStyles.ingredient_name}  text_type_main-default`}>
+						{props.ingredient.name}
 					</p>
-					<CurrencyIcon className={ingredientStyles.ingredient_currency} type="primary" />
 				</span>
-				<p className={`${ingredientStyles.ingredient_name}  text_type_main-default`}>{props.ingredient.name}</p>
-			</span>
-			{isOpen && (
-				<Modal header="Детали ингредиента" handleClose={handleClose}>
-					<IngredientDetails />
-				</Modal>
-			)}
-		</>
+				{isOpen && (
+					<Modal header="Детали ингредиента" handleClose={handleClose}>
+						<IngredientDetails />
+					</Modal>
+				)}
+			</div>
+		)
 	)
 }
 
