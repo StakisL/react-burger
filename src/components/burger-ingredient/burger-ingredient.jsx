@@ -53,7 +53,7 @@ function BurgerIngredient(props) {
 				<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
 					<div className={ingredientStyles.image_container}>
 						<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
-						{itemCount !== 0 && <Counter count={itemCount} size="small" />}
+						{itemCount !== 0 && <Counter className={ingredientStyles.ingredient_counter} count={itemCount} size="small" />}
 					</div>
 					<span className={ingredientStyles.ingredient_price}>
 						<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>

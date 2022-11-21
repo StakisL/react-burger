@@ -1,0 +1,5 @@
+.constructor_list {
+    list-style-type: none;
+    overflow-y: scroll;
+    max-height: 464px;
+}

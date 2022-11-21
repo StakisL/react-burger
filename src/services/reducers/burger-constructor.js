@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, SET_DEFAULT_CONSTRUCTOR } from '../actions/burger-constructor'
+import { ADD_ITEM, DELETE_ITEM, SORT_ITEMS, SET_DEFAULT_CONSTRUCTOR } from '../actions/burger-constructor'
 
 const initialState = {
 	items: [],
@@ -6,6 +6,8 @@ const initialState = {
 	bun: undefined,
 	isLoading: false,
 	hasError: false,
+	currentIndex: 0,
+	targetIndex: 0,
 }
 
 export const burgerConstructorReducer = (state = initialState, action) => {
@@ -18,6 +20,9 @@ export const burgerConstructorReducer = (state = initialState, action) => {
 		}
 		case SET_DEFAULT_CONSTRUCTOR: {
 			return initialState
+		}
+		case SORT_ITEMS: {
+			return sortItems(state, action)
 		}
 		default: {
 			return state
@@ -50,4 +55,17 @@ const removeItem = (state, action) => {
 		isEmpty: state.items.length === 0,
 		items: state.items.filter((_, index) => index !== action.id),
 	}
+}
+
+const sortItems = (state, action) => {
+	let sortableItem = state.items[action.currentIndex]
+	if (sortableItem) {
+		state.items.splice(action.currentIndex, 1)
+		state.items.splice(action.targetIndex, 0, sortableItem)
+		return {
+			...state,
+			items: state.items,
+		}
+	}
+	return state
 }

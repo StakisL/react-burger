@@ -1,18 +1,15 @@
-import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, { useState } from 'react'
 import burgerConstructorStyles from './burger-constructor.module.css'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import Bun from '../bun/bun'
 import { useSelector, useDispatch } from 'react-redux'
-import { DELETE_ITEM, SET_DEFAULT_CONSTRUCTOR, ADD_ITEM } from '../../services/actions/burger-constructor'
+import { SET_DEFAULT_CONSTRUCTOR, ADD_ITEM } from '../../services/actions/burger-constructor'
 import { order } from '../../services/actions/order-details'
-import {
-	INGREDIENT_INCREASE,
-	INGREDIENT_DECREASE,
-	SET_DEFAULT_COUNTER,
-} from '../../services/actions/burger-ingredients'
+import { INGREDIENT_INCREASE, SET_DEFAULT_COUNTER } from '../../services/actions/burger-ingredients'
 import { useDrop } from 'react-dnd'
+import DraggableBurgerConstructor from '../draggable-burger-constructor/draggable-burger-constructor'
 
 function BurgerConstructor() {
 	const dispatch = useDispatch()
@@ -69,41 +66,12 @@ function BurgerConstructor() {
 		dispatch({ type: SET_DEFAULT_COUNTER })
 	}
 
-	const removeIngredient = (ingredient, id) => {
-		dispatch({ type: DELETE_ITEM, id: id })
-		dispatch({ type: INGREDIENT_DECREASE, id: ingredient._id })
-	}
-
 	return (
 		<section className={`${burgerConstructorStyles.constructor} mt-25`} ref={dropTarget}>
-			<span>
+			<span className={burgerConstructorStyles.constructor_list}>
 				{bun !== undefined && <Bun bun={bun} type="top" />}
 				{!isEmpty ? (
-					<ul className={burgerConstructorStyles.constructor_list}>
-						{ingredients.map((ingredient, index) => (
-							<section
-								className={`${burgerConstructorStyles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
-								key={index}
-							>
-								<span
-									className={`${burgerConstructorStyles.constructor_list_item__icon_container} mr-1`}
-								>
-									<DragIcon
-										className={burgerConstructorStyles.constructor_list_item__icon}
-										type="primary"
-									/>
-								</span>
-								<ConstructorElement
-									className={burgerConstructorStyles.constructor_list_item__description}
-									text={ingredient.name}
-									type={ingredient.type}
-									price={ingredient.price}
-									thumbnail={ingredient.image}
-									handleClose={() => removeIngredient(ingredient, index)}
-								/>
-							</section>
-						))}
-					</ul>
+					<DraggableBurgerConstructor ingredients={ingredients} />
 				) : (
 					<div
 						className={`${
@@ -113,7 +81,6 @@ function BurgerConstructor() {
 						} mt-4 mb-4`}
 					/>
 				)}
-
 				{bun !== undefined && <Bun bun={bun} type="bottom" />}
 			</span>
 			<section className={`${burgerConstructorStyles.order_info} mt-10`}>
