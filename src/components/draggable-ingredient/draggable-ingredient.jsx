@@ -21,7 +21,6 @@ function DraggableIngredient(props) {
 	const [{ isDrag }, dragRef] = useDrag({
 		type: 'ingredient',
 		item: { index: props.index, content: props.ingredient },
-		//index: props.index,
 		collect: (monitor) => ({
 			isDrag: monitor.isDragging(),
 		}),
