@@ -1,7 +1,7 @@
 import { SET_INGREDIENT_DETAILS } from '../actions/ingredient-details'
 
 const initialState = {
-	ingredient: {},
+	ingredient: undefined,
 }
 
 export const ingredientDetailsReducer = (state = initialState, action) => {

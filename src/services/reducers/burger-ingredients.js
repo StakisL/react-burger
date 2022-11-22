@@ -2,7 +2,7 @@ import { INGREDIENT_DECREASE, INGREDIENT_INCREASE, SET_DEFAULT_COUNTER } from '.
 
 const initialState = {
 	items: [],
-	bunCounter: {},
+	bunCounter: undefined,
 }
 
 export const burgerIngredientsReducer = (state = initialState, action) => {
@@ -33,7 +33,7 @@ function ingredientIncrease(state, action) {
 		}
 	}
 
-	if (state.items.find((e) => e.id === action.id) === undefined) {
+	if (!state.items.find((e) => e.id === action.id)) {
 		return {
 			...state,
 			items: [...state.items, { id: action.id, count: 1 }],
@@ -53,7 +53,11 @@ function ingredientIncrease(state, action) {
 }
 
 function ingredientDecrease(state, action) {
-	if (state.items.find((e) => e.id === action.id) === undefined) {
+	if (state.items === null) {
+		return state
+	}
+
+	if (!state.items.find((e) => e.id === action.id)) {
 		return state
 	}
 

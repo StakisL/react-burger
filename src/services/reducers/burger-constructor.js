@@ -2,12 +2,7 @@ import { ADD_ITEM, DELETE_ITEM, SORT_ITEMS, SET_DEFAULT_CONSTRUCTOR } from '../a
 
 const initialState = {
 	items: [],
-	isEmpty: true,
 	bun: undefined,
-	isLoading: false,
-	hasError: false,
-	currentIndex: 0,
-	targetIndex: 0,
 }
 
 export const burgerConstructorReducer = (state = initialState, action) => {
@@ -41,12 +36,11 @@ const addItem = (state, action) => {
 	return {
 		...state,
 		items: [...state.items, action.item],
-		isEmpty: false,
 	}
 }
 
 const removeItem = (state, action) => {
-	if (state.isEmpty) {
+	if (state.length === 0) {
 		return
 	}
 
