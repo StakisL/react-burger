@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { SET_DEFAULT_CONSTRUCTOR, ADD_ITEM } from '../../services/actions/burger-constructor'
 import { order } from '../../services/actions/order-details'
 import { INGREDIENT_INCREASE, SET_DEFAULT_COUNTER } from '../../services/actions/burger-ingredients'
+import { RESET_ORDER_DETAILS } from '../../services/actions/order-details'
 import { useDrop } from 'react-dnd'
 import DraggableBurgerConstructor from '../draggable-burger-constructor/draggable-burger-constructor'
 import { v4 as uuidv4 } from 'uuid'
@@ -53,6 +54,7 @@ function BurgerConstructor() {
 		setOpen(false)
 		dispatch({ type: SET_DEFAULT_CONSTRUCTOR })
 		dispatch({ type: SET_DEFAULT_COUNTER })
+		dispatch({ type: RESET_ORDER_DETAILS })
 	}
 
 	return (
