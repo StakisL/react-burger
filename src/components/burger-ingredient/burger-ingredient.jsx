@@ -48,7 +48,7 @@ function BurgerIngredient(props) {
 			<div ref={dragRef}>
 				<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
 					<div className={ingredientStyles.image_container}>
-						<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
+						<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="ingredient" />
 						{itemCount !== 0 && (
 							<Counter className={ingredientStyles.ingredient_counter} count={itemCount} size="small" />
 						)}

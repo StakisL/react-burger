@@ -6,7 +6,7 @@ function IngredientDetails() {
 
 	return (
 		<section className={detailStyles.ingredient_detail}>
-			<img className={detailStyles.ingredient_image} src={ingredient.image_large} alt="" />
+			<img className={detailStyles.ingredient_image} src={ingredient.image_large} alt="ingredient" />
 			<p className={`${detailStyles.ingredient_name} text_type_main-medium mt-4 mb-4`}>{ingredient.name}</p>
 			<ul className={`${detailStyles.ingredient_info_list} mt-8 mb-15`}>
 				<li className={`${detailStyles.ingredient_info_list__item} mr-5`}>
