@@ -30,7 +30,7 @@ function BurgerConstructor() {
 			return 0
 		}
 
-		let bunPrice = bun === undefined ? 0 : bun.price * 2
+		const bunPrice = bun === undefined ? 0 : bun.price * 2
 		return ingredients.reduce((total, currentValue) => total + currentValue.price, 0) + bunPrice
 	}, [ingredients, isEmpty, bun])
 
@@ -39,21 +39,9 @@ function BurgerConstructor() {
 		dispatch({ type: INGREDIENT_INCREASE, id: item._id, ingredientType: item.type })
 	}
 
-	function ingredientsForOrder() {
-		let ingredientIds = []
-		ingredientIds.push(bun._id)
-		ingredients.forEach((element) => {
-			ingredientIds.push(element._id)
-		})
-
-		ingredientIds.push(bun._id)
-
-		return ingredientIds
-	}
-
 	const handleOpen = () => {
-		if (bun !== undefined && ingredients.length !== 0) {
-			let ingredientIds = ingredientsForOrder()
+		if (bun !== undefined) {
+			const ingredientIds = [bun._id, ...ingredients.map((ingredient) => ingredient._id), bun._id]
 			dispatch(order(ingredientIds))
 			setOpen(true)
 			return

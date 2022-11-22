@@ -5,11 +5,8 @@ import Modal from '../modal/modal.jsx'
 import { useMemo, useState } from 'react'
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { ADD_ITEM } from '../../services/actions/burger-constructor.js'
-import { INGREDIENT_INCREASE } from '../../services/actions/burger-ingredients.js'
 import { SET_INGREDIENT_DETAILS } from '../../services/actions/ingredient-details.js'
 import { useDrag } from 'react-dnd'
-import { v4 as uuidv4 } from 'uuid'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -43,8 +40,6 @@ function BurgerIngredient(props) {
 
 	const handleOpen = () => {
 		setOpen(true)
-		dispatch({ type: ADD_ITEM, item: { ...props.ingredient, key: uuidv4() } })
-		dispatch({ type: INGREDIENT_INCREASE, id: props.ingredient._id, ingredientType: props.ingredient.type })
 		dispatch({ type: SET_INGREDIENT_DETAILS, ingredient: props.ingredient })
 	}
 
