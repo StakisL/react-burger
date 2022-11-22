@@ -62,7 +62,10 @@ function BurgerConstructor() {
 			<span className={burgerConstructorStyles.constructor_list}>
 				{bun !== undefined && <Bun bun={bun} type="top" />}
 				{!isEmpty ? (
-					<DraggableBurgerConstructor ingredients={ingredients} />
+					<DraggableBurgerConstructor
+						className={`${burgerConstructorStyles.draggableBurger_constructor}`}
+						ingredients={ingredients}
+					/>
 				) : (
 					<div
 						className={`${

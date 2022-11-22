@@ -25,8 +25,13 @@ function DraggableIngredient(props) {
 		}),
 	})
 
-	const [, drop] = useDrop({
+	const [{ handlerId }, drop] = useDrop({
 		accept: 'ingredient',
+		collect(monitor) {
+			return {
+				handlerId: monitor.getHandlerId(),
+			}
+		},
 		hover(item, monitor) {
 			const dragIndex = item.index
 			const hoverIndex = props.index
@@ -66,7 +71,11 @@ function DraggableIngredient(props) {
 
 	return (
 		!isDrag && (
-			<section className={`${styles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`} ref={ref}>
+			<section
+				className={`${styles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
+				ref={ref}
+				data-handler-id={handlerId}
+			>
 				<span className={`${styles.constructor_list_item__icon_container} mr-1`}>
 					<DragIcon className={styles.constructor_list_item__icon} type="primary" />
 				</span>

@@ -2,6 +2,7 @@
     max-height: 912px;
     max-width: 600px;
     min-height: 600px;
+    height: 464px;
     display: flex;
     flex-direction: column;
     justify-content: right;
