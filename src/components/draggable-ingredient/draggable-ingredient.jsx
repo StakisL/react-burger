@@ -17,7 +17,6 @@ DraggableIngredient.propTypes = {
 function DraggableIngredient(props) {
 	const dispatch = useDispatch()
 	const ref = useRef(null)
-	let { dragIndex, hoverIndex } = {}
 	const [{ isDrag }, dragRef] = useDrag({
 		type: 'ingredient',
 		item: { index: props.index, content: props.ingredient },
@@ -29,14 +28,17 @@ function DraggableIngredient(props) {
 	const [, drop] = useDrop({
 		accept: 'ingredient',
 		hover(item, monitor) {
+			const dragIndex = item.index
+			const hoverIndex = props.index
+
 			if (!ref.current) {
 				return
 			}
-			dragIndex = item.index
-			hoverIndex = props.index
+
 			if (dragIndex === hoverIndex) {
 				return
 			}
+
 			const hoverBoundingRect = ref.current?.getBoundingClientRect()
 			const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
 			const clientOffset = monitor.getClientOffset()
