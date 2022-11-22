@@ -9,10 +9,10 @@ import PropTypes from 'prop-types'
 import { useRef } from 'react'
 import { SORT_ITEMS } from '../../services/actions/burger-constructor'
 
-// DraggableIngredient.propTypes = {
-// 	ingredient: burgerPropTypes.isRequired,
-// 	index: PropTypes.number.isRequired,
-// }
+DraggableIngredient.propTypes = {
+	ingredient: burgerPropTypes.isRequired,
+	index: PropTypes.number.isRequired,
+}
 
 function DraggableIngredient(props) {
 	const dispatch = useDispatch()

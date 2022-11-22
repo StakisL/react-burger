@@ -3,9 +3,9 @@ import DraggableIngredient from '../draggable-ingredient/draggable-ingredient'
 import burgerPropTypes from '../../utils/prop-types.jsx'
 import PropTypes from 'prop-types'
 
-// DraggableBurgerConstructor.propTypes = {
-// 	ingredients: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
-// }
+DraggableBurgerConstructor.propTypes = {
+	ingredients: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
+}
 
 function DraggableBurgerConstructor(props) {
 	return (
