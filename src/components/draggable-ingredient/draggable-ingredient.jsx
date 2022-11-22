@@ -17,12 +17,9 @@ DraggableIngredient.propTypes = {
 function DraggableIngredient(props) {
 	const dispatch = useDispatch()
 	const ref = useRef(null)
-	const [{ isDrag }, dragRef] = useDrag({
+	const [, dragRef] = useDrag({
 		type: 'ingredient',
 		item: { index: props.index, content: props.ingredient },
-		collect: (monitor) => ({
-			isDrag: monitor.isDragging(),
-		}),
 	})
 
 	const [{ handlerId }, drop] = useDrop({
@@ -70,25 +67,23 @@ function DraggableIngredient(props) {
 	dragRef(drop(ref))
 
 	return (
-		!isDrag && (
-			<section
-				className={`${styles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
-				ref={ref}
-				data-handler-id={handlerId}
-			>
-				<span className={`${styles.constructor_list_item__icon_container} mr-1`}>
-					<DragIcon className={styles.constructor_list_item__icon} type="primary" />
-				</span>
-				<ConstructorElement
-					className={styles.constructor_list_item__description}
-					text={props.ingredient.name}
-					type={props.ingredient.type}
-					price={props.ingredient.price}
-					thumbnail={props.ingredient.image}
-					handleClose={() => removeIngredient(props.ingredient, props.index)}
-				/>
-			</section>
-		)
+		<section
+			className={`${styles.constructor_list_item} mt-4 mb-4 mr-1 ml-1`}
+			ref={ref}
+			data-handler-id={handlerId}
+		>
+			<span className={`${styles.constructor_list_item__icon_container} mr-1`}>
+				<DragIcon className={styles.constructor_list_item__icon} type="primary" />
+			</span>
+			<ConstructorElement
+				className={styles.constructor_list_item__description}
+				text={props.ingredient.name}
+				type={props.ingredient.type}
+				price={props.ingredient.price}
+				thumbnail={props.ingredient.image}
+				handleClose={() => removeIngredient(props.ingredient, props.index)}
+			/>
+		</section>
 	)
 }
 
