@@ -1,3 +1,3 @@
 export const initialStoreState = {
-	constructor: { items: [], isEmpty: true },
+	burgerConstructor: { items: [], isEmpty: true },
 }

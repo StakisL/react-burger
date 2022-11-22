@@ -9,6 +9,7 @@ import { ADD_ITEM } from '../../services/actions/burger-constructor.js'
 import { INGREDIENT_INCREASE } from '../../services/actions/burger-ingredients.js'
 import { SET_INGREDIENT_DETAILS } from '../../services/actions/ingredient-details.js'
 import { useDrag } from 'react-dnd'
+import { v4 as uuidv4 } from 'uuid'
 
 BurgerIngredient.propTypes = {
 	ingredient: burgerPropTypes.isRequired,
@@ -20,7 +21,7 @@ function BurgerIngredient(props) {
 	const itemsCounter = useSelector((store) => store.ingredients.items)
 	const bunCount = useSelector((store) => store.ingredients.bunCounter)
 	const [{ isDrag }, dragRef] = useDrag({
-		type: 'ingredient',
+		type: 'ingredient_new',
 		item: props.ingredient,
 		collect: (monitor) => ({
 			isDrag: monitor.isDragging(),
@@ -42,7 +43,7 @@ function BurgerIngredient(props) {
 
 	const handleOpen = () => {
 		setOpen(true)
-		dispatch({ type: ADD_ITEM, item: props.ingredient })
+		dispatch({ type: ADD_ITEM, item: { ...props.ingredient, key: uuidv4() } })
 		dispatch({ type: INGREDIENT_INCREASE, id: props.ingredient._id, ingredientType: props.ingredient.type })
 		dispatch({ type: SET_INGREDIENT_DETAILS, ingredient: props.ingredient })
 	}
@@ -53,7 +54,9 @@ function BurgerIngredient(props) {
 				<span className={ingredientStyles.ingredient} key={props.ingredient._id} onClick={handleOpen}>
 					<div className={ingredientStyles.image_container}>
 						<img className={ingredientStyles.ingredient_icon} src={props.ingredient.image} alt="" />
-						{itemCount !== 0 && <Counter className={ingredientStyles.ingredient_counter} count={itemCount} size="small" />}
+						{itemCount !== 0 && (
+							<Counter className={ingredientStyles.ingredient_counter} count={itemCount} size="small" />
+						)}
 					</div>
 					<span className={ingredientStyles.ingredient_price}>
 						<p className={`${ingredientStyles.ingredient_count}  text_type_digits-default`}>

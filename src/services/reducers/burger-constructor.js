@@ -58,14 +58,26 @@ const removeItem = (state, action) => {
 }
 
 const sortItems = (state, action) => {
-	let sortableItem = state.items[action.currentIndex]
-	if (sortableItem) {
-		state.items.splice(action.currentIndex, 1)
-		state.items.splice(action.targetIndex, 0, sortableItem)
-		return {
-			...state,
-			items: state.items,
-		}
-	}
-	return state
+	const items = [...state.items];
+	items.splice(
+		action.targetIndex,
+		0,
+		items.splice(action.currentIndex, 1)[0]
+	);
+
+	return {
+		...state,
+		items,
+	};
+
+	// let sortableItem = state.items[action.currentIndex]
+	// if (sortableItem) {
+	// 	state.items.splice(action.currentIndex, 1)
+	// 	state.items.splice(action.targetIndex, 0, sortableItem)
+	// 	return {
+	// 		...state,
+	// 		items: state.items,
+	// 	}
+	// }
+	// return state
 }

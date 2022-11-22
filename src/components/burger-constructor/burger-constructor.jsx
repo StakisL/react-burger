@@ -10,15 +10,16 @@ import { order } from '../../services/actions/order-details'
 import { INGREDIENT_INCREASE, SET_DEFAULT_COUNTER } from '../../services/actions/burger-ingredients'
 import { useDrop } from 'react-dnd'
 import DraggableBurgerConstructor from '../draggable-burger-constructor/draggable-burger-constructor'
+import { v4 as uuidv4 } from 'uuid'
 
 function BurgerConstructor() {
 	const dispatch = useDispatch()
 	const [isOpen, setOpen] = useState(false)
-	const ingredients = useSelector((store) => store.constructor.items)
-	const isEmpty = useSelector((store) => store.constructor.isEmpty)
-	const bun = useSelector((store) => store.constructor.bun)
+	const ingredients = useSelector((store) => store.burgerConstructor.items)
+	const isEmpty = useSelector((store) => store.burgerConstructor.isEmpty)
+	const bun = useSelector((store) => store.burgerConstructor.bun)
 	const [, dropTarget] = useDrop(() => ({
-		accept: 'ingredient',
+		accept: 'ingredient_new',
 		drop(item) {
 			onDropHandler(item)
 		},
@@ -34,7 +35,7 @@ function BurgerConstructor() {
 	}, [ingredients, isEmpty, bun])
 
 	const onDropHandler = (item) => {
-		dispatch({ type: ADD_ITEM, item: item })
+		dispatch({ type: ADD_ITEM, item: { ...item, key: uuidv4() } })
 		dispatch({ type: INGREDIENT_INCREASE, id: item._id, ingredientType: item.type })
 	}
 

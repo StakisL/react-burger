@@ -11,7 +11,7 @@ function DraggableBurgerConstructor(props) {
 	return (
 		<ul className={styles.constructor_list}>
 			{props.ingredients.map((ingredient, index) => (
-				<DraggableIngredient ingredient={ingredient} index={index} key={index} />
+				<DraggableIngredient ingredient={ingredient} index={index} key={ingredient.key} />
 			))}
 		</ul>
 	)

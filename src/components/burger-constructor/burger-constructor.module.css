@@ -1,8 +1,7 @@
 .constructor {
     max-height: 912px;
     max-width: 600px;
-    min-width: 600px;
-    height: 600px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: right;
@@ -28,5 +27,6 @@
 }
 
 .empty_container_with_buns {
-    height: 16px;
+    max-height: 464px;
+    height: 464px;
 }

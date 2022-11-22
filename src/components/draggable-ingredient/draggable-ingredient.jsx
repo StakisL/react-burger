@@ -21,7 +21,7 @@ function DraggableIngredient(props) {
 	const [{ isDrag }, dragRef] = useDrag({
 		type: 'ingredient',
 		item: { index: props.index, content: props.ingredient },
-		index: props.index,
+		//index: props.index,
 		collect: (monitor) => ({
 			isDrag: monitor.isDragging(),
 		}),
@@ -48,9 +48,11 @@ function DraggableIngredient(props) {
 			if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
 				return
 			}
-		},
-		drop() {
+
 			dispatch({ type: SORT_ITEMS, currentIndex: dragIndex, targetIndex: hoverIndex })
+
+			// @ts-ignore
+			item.index = hoverIndex
 		},
 	})
 
