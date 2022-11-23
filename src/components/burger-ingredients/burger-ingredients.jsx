@@ -1,23 +1,19 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
-import PropTypes from 'prop-types'
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import IngredientsList from '../ingredients-list/ingredients-list.jsx'
-import burgerPropTypes from '../../utils/prop-types.jsx'
+import { useSelector } from 'react-redux'
 
-BurgerIngredients.propTypes = {
-	data: PropTypes.arrayOf(burgerPropTypes.isRequired).isRequired,
-}
-
-function BurgerIngredients(props) {
+function BurgerIngredients() {
 	const [current, setCurrent] = React.useState('bun')
+	const ingredients = useSelector((store) => store.api.ingredients)
 	const bunRef = React.useRef(null)
 	const sauceRef = React.useRef(null)
 	const mainRef = React.useRef(null)
 
-	const bun = React.useMemo(() => props.data.filter((element) => element.type === 'bun'), [props.data])
-	const sauce = React.useMemo(() => props.data.filter((element) => element.type === 'sauce'), [props.data])
-	const main = React.useMemo(() => props.data.filter((element) => element.type === 'main'), [props.data])
+	const bun = React.useMemo(() => ingredients.filter((element) => element.type === 'bun'), [ingredients])
+	const sauce = React.useMemo(() => ingredients.filter((element) => element.type === 'sauce'), [ingredients])
+	const main = React.useMemo(() => ingredients.filter((element) => element.type === 'main'), [ingredients])
 
 	const currentHandle = (val) => {
 		moveToView(val)
@@ -40,6 +36,22 @@ function BurgerIngredients(props) {
 		}
 	}
 
+	const onScroll = (e) => {
+		let scrollTop = e.currentTarget.scrollTop
+		if (scrollTop <= bunRef.current.offsetTop) {
+			setCurrent('bun')
+			return
+		}
+
+		if (scrollTop > bunRef.current.offsetTop && scrollTop <= sauceRef.current.offsetTop) {
+			setCurrent('sauce')
+			return
+		}
+
+		setCurrent('main')
+		return
+	}
+
 	return (
 		<section className={burgerIngredientsStyles.burger_ingredients_container}>
 			<h1
@@ -59,7 +71,7 @@ function BurgerIngredients(props) {
 						Начинки
 					</Tab>
 				</section>
-				<ul className={burgerIngredientsStyles.burger_ingredients_list}>
+				<ul className={burgerIngredientsStyles.burger_ingredients_list} onScroll={onScroll}>
 					<div className={burgerIngredientsStyles.ref_container} ref={bunRef}>
 						<IngredientsList type="Булки" ingredients={bun} />
 					</div>

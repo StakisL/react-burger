@@ -1,0 +1,15 @@
+.bun_item_description {
+    width: 524px;
+    max-height: 80px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.bun_item {
+    max-height: 80px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+}

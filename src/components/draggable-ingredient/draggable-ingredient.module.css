@@ -1,0 +1,22 @@
+.constructor_list_item {
+    max-height: 80px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.constructor_list_item__icon_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+}
+
+.constructor_list_item__description {
+    width: 524px;
+    max-height: 80px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

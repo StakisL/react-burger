@@ -1,28 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import appStyles from './app.module.css'
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import { getIngredients } from '../../utils/burger-api'
+import { getIngredients } from '../../services/actions/app'
+import { useDispatch, useSelector } from 'react-redux'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function App() {
-	const [burgersData, setBurgersData] = useState()
-	const [isLoaded, setLoaded] = useState(false)
-	const [error, setError] = useState(false)
+	const dispatch = useDispatch()
+	const { ingredients, isLoading, hasError } = useSelector((store) => store.api)
 
 	useEffect(() => {
-		getIngredients()
-			.then((ingredients) => {
-				setBurgersData(ingredients.data)
-			})
-			.catch((error) => {
-				setError(error.toString())
-				console.error('Api request was failed', error)
-			})
-			.finally(() => setLoaded(true))
-	}, [])
+		dispatch(getIngredients())
+	}, [dispatch])
 
-	if (error) {
+	if (hasError) {
 		return (
 			<section>
 				<h1>Что-то пошло не так :(</h1>
@@ -33,11 +27,13 @@ function App() {
 	return (
 		<React.Fragment>
 			<AppHeader className={appStyles.app_header} />
-			{isLoaded && (
-				<div className={appStyles.app_body}>
-					<BurgerIngredients data={burgersData} />
-					<BurgerConstructor data={burgersData} />
-				</div>
+			{!isLoading && ingredients.length !== 0 && (
+				<DndProvider backend={HTML5Backend}>
+					<div className={appStyles.app_body}>
+						<BurgerIngredients />
+						<BurgerConstructor />
+					</div>
+				</DndProvider>
 			)}
 		</React.Fragment>
 	)

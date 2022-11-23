@@ -1,0 +1,7 @@
+.constructor_list {
+    list-style-type: none;
+    overflow-y: auto;
+    max-height: 464px;
+    height: 460px;
+    width: 600px;
+}

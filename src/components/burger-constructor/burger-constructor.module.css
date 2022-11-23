@@ -1,39 +1,11 @@
 .constructor {
     max-height: 912px;
     max-width: 600px;
-    width: 600px;
+    min-height: 600px;
+    height: 464px;
     display: flex;
     flex-direction: column;
     justify-content: right;
-}
-
-.constructor_list {
-    list-style-type: none;
-    overflow-y: scroll;
-    max-height: 464px;
-}
-
-.constructor_list_item {
-    max-height: 80px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.constructor_list_item__icon_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 24px;
-}
-
-.constructor_list_item__description {
-    width: 524px;
-    max-height: 80px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
 }
 
 .order_info {
@@ -48,4 +20,14 @@
     flex-direction: row;
     align-items: center;
     gap: 4px;
+}
+
+.empty_container{
+    max-height: 464px;
+    height: 464px;
+}
+
+.empty_container_with_buns {
+    max-height: 464px;
+    height: 464px;
 }
